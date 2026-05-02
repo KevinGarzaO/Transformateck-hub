@@ -9,12 +9,18 @@ export function middleware(req: NextRequest) {
   // 1. Mapeo de Subdominios (Rewrites)
   let isRewritten = false;
   if (hostname.includes('transsync.transformateck.com')) {
-    if (!pathname.startsWith('/transsync')) {
+    if (pathname === '/app') {
+      pathname = '/transsync/dashboard/inicio';
+      isRewritten = true;
+    } else if (!pathname.startsWith('/transsync')) {
       pathname = `/transsync${pathname === '/' ? '' : pathname}`;
       isRewritten = true;
     }
   } else if (hostname.includes('inventarios.transformateck.com')) {
-    if (!pathname.startsWith('/inventarios')) {
+    if (pathname === '/app') {
+      pathname = '/inventarios/dashboard/inicio';
+      isRewritten = true;
+    } else if (!pathname.startsWith('/inventarios')) {
       pathname = `/inventarios${pathname === '/' ? '' : pathname}`;
       isRewritten = true;
     }
@@ -29,15 +35,6 @@ export function middleware(req: NextRequest) {
       isRewritten = true;
     } else if (cleanPath === '/registro') {
       pathname = '/cuenta/registro';
-      isRewritten = true;
-    }
-  } else if (pathname === '/app') {
-    // Redirección genérica de /app a dashboard si estamos en un subdominio de producto
-    if (hostname.includes('transsync.')) {
-      pathname = '/transsync/dashboard/inicio';
-      isRewritten = true;
-    } else if (hostname.includes('inventarios.')) {
-      pathname = '/inventarios/dashboard/inicio';
       isRewritten = true;
     }
   }

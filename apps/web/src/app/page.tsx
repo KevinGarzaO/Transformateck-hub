@@ -65,10 +65,10 @@ const Navbar = () => (
       </div>
 
       <div className="flex items-center gap-4">
-         <a href="https://transformateck-hub-one.vercel.app" className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300">
+         <a href="https://one.transformateck.com" className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300">
             One
          </a>
-         <a href="https://transformateck-hub-workspace.vercel.app" className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300">
+         <a href="https://workspace.transformateck.com" className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300">
             Workspace
          </a>
       </div>
@@ -336,7 +336,7 @@ export default function TransformateckLanding() {
                    ))}
                 </div>
 
-                <a href="https://transformateck-hub-workspace.vercel.app" className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-5 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_30px_rgba(78,204,163,0.4)]">
+                <a href="https://workspace.transformateck.com" className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-5 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_30px_rgba(78,204,163,0.4)]">
                   Explorar Workspace
                 </a>
               </div>
@@ -403,7 +403,7 @@ export default function TransformateckLanding() {
                    ))}
                 </div>
 
-                <a href="https://transformateck-hub-one.vercel.app" className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-5 bg-white text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#7C3AED] hover:text-white transition-all duration-300">
+                <a href="https://one.transformateck.com" className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-5 bg-white text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#7C3AED] hover:text-white transition-all duration-300">
                   Entrar a One
                 </a>
               </div>
@@ -444,7 +444,7 @@ export default function TransformateckLanding() {
               
               {/* FILA 1 */}
               {/* Avocado Estudio (One) */}
-              <div className="bg-[#050505] border border-white/10 hover:border-[#7C3AED]/50 p-10 rounded-3xl relative group transition-colors duration-300">
+              <a href="https://one.transformateck.com/app" className="bg-[#050505] border border-white/10 hover:border-[#7C3AED]/50 p-10 rounded-3xl relative group transition-colors duration-300 block text-left">
                 <div className="flex justify-between items-start mb-8">
                   <div className="px-3 py-1 rounded border border-[#7C3AED]/30 bg-[#7C3AED]/10 text-[10px] uppercase tracking-widest font-black text-[#7C3AED]">Ecosistema One</div>
                   <span className="text-[10px] text-white/40 font-mono border border-white/10 px-2 py-1 rounded">V 1.0</span>
@@ -455,10 +455,10 @@ export default function TransformateckLanding() {
                    <span className="px-2 py-1 bg-white/5 rounded text-[10px] text-white/40 font-mono">React</span>
                    <span className="px-2 py-1 bg-white/5 rounded text-[10px] text-white/40 font-mono">AI Engine</span>
                 </div>
-              </div>
+              </a>
 
               {/* Cárgalo TMS (Workspace) */}
-              <div className="bg-[#050505] border border-white/10 hover:border-[#4ECCA3]/50 p-10 rounded-3xl relative group transition-colors duration-300">
+              <a href="https://transsync.transformateck.com" className="bg-[#050505] border border-white/10 hover:border-[#4ECCA3]/50 p-10 rounded-3xl relative group transition-colors duration-300 block text-left">
                 <div className="flex justify-between items-start mb-8">
                   <div className="px-3 py-1 rounded border border-[#4ECCA3]/30 bg-[#4ECCA3]/10 text-[10px] uppercase tracking-widest font-black text-[#4ECCA3]">Ecosistema Workspace</div>
                   <span className="text-[10px] text-white/40 font-mono border border-white/10 px-2 py-1 rounded">V 2.0 B2B</span>
@@ -469,7 +469,7 @@ export default function TransformateckLanding() {
                    <span className="px-2 py-1 bg-white/5 rounded text-[10px] text-white/40 font-mono">Next.js</span>
                    <span className="px-2 py-1 bg-white/5 rounded text-[10px] text-white/40 font-mono">Live Tracking</span>
                 </div>
-              </div>
+              </a>
 
               {/* FILA 2 */}
               {/* SpecForge-TSX (One) */}
@@ -571,8 +571,8 @@ export default function TransformateckLanding() {
               <div>
                 <h4 className="text-[#4ECCA3] font-black uppercase tracking-widest text-[10px] mb-6">Nuestros Ecosistemas</h4>
                 <ul className="space-y-4 font-bold text-sm">
-                  <li><a href="https://transformateck-hub-workspace.vercel.app" className="text-white/60 hover:text-white transition-colors">Workspace (Empresas)</a></li>
-                  <li><a href="https://transformateck-hub-one.vercel.app" className="text-white/60 hover:text-white transition-colors">One (Creadores)</a></li>
+                  <li><a href="https://workspace.transformateck.com" className="text-white/60 hover:text-white transition-colors">Workspace (Empresas)</a></li>
+                  <li><a href="https://one.transformateck.com" className="text-white/60 hover:text-white transition-colors">One (Creadores)</a></li>
                 </ul>
               </div>
 
