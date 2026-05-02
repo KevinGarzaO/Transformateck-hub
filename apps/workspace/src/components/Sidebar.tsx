@@ -1,11 +1,9 @@
-'use client';
-
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Home, Building2, Truck, Package, MapPin, Wallet, BarChart3, LogOut, Car, Users, Route, Play, Bell, AlertCircle, User, ChevronDown, ChevronRight, Menu } from 'lucide-react';
 
-const Sidebar = () => {
+const SidebarContent = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -104,8 +102,10 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
-    document.cookie = "workspace_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    window.location.href = "/cuenta/login";
+    // MODO DISEÑO: Borrar cookie global corporativa y redirigir
+    const domain = window.location.hostname.includes('transformateck.com') ? '; domain=.transformateck.com' : '';
+    document.cookie = `workspace_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${domain}`;
+    window.location.href = 'https://workspace.transformateck.com/login';
   };
 
   return (
@@ -188,5 +188,11 @@ const Sidebar = () => {
     </aside>
   );
 };
+
+const Sidebar = () => (
+  <Suspense fallback={<div className="w-[80px] bg-[#0E2A3A]" />}>
+    <SidebarContent />
+  </Suspense>
+);
 
 export default Sidebar;
