@@ -332,7 +332,7 @@ export default function WorkspacePortal() {
                   <Truck size={20} className="text-primary" /> Productos Activos
                 </h3>
                 <div className="space-y-4">
-                  <ProductRow name="TransSync" icon={Truck} lastAccess="hace 2 horas" href="/transsync/dashboard/inicio" />
+                  <ProductRow name="TransSync" icon={Truck} lastAccess="hace 2 horas" href="https://transsync.transformateck.com/app" />
                   <ProductRow name="Inventarios" icon={Box} lastAccess="hace 1 día" href="#" color="bg-[#F97316]" />
                 </div>
               </div>
@@ -412,7 +412,7 @@ export default function WorkspacePortal() {
                <LayoutGrid size={16} className="text-primary" /> Aplicaciones
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <AppGridCard name="TransSync TMS" desc="Gestión inmersiva de transporte y rutas inteligentes." icon={Truck} href="/transsync/dashboard/inicio" color="from-[#1A8FBF] to-[#2BA0C5]" />
+              <AppGridCard name="TransSync TMS" desc="Gestión inmersiva de transporte y rutas inteligentes." icon={Truck} href="https://transsync.transformateck.com/app" color="from-[#1A8FBF] to-[#2BA0C5]" />
               <AppGridCard name="Inventario" desc="Control total de existencias y WMS." icon={Box} href="#" color="from-[#F97316] to-[#C2410C]" />
               <AppGridCard name="RRHH" desc="Gestión de talento y nóminas corporativas." icon={Users} href="#" color="from-[#4CB89C] to-[#2B8365]" />
             </div>

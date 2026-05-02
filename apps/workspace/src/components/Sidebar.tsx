@@ -57,37 +57,37 @@ const SidebarContentInternal = () => {
     {
       title: 'Principal',
       items: [
-        { id: 'inicio', label: 'Dashboard', icon: Home, href: '/transsync/dashboard/inicio' },
-        { id: 'notificaciones', label: 'Notificaciones', icon: Bell, href: '/transsync/dashboard/notificaciones', badge: '5' },
+        { id: 'inicio', label: 'Dashboard', icon: Home, href: '/dashboard/inicio' },
+        { id: 'notificaciones', label: 'Notificaciones', icon: Bell, href: '/dashboard/notificaciones', badge: '5' },
       ]
     },
     {
       title: 'Catálogo',
       items: [
-        { id: 'clientes-b2b', label: 'Clientes (B2B)', icon: Building2, href: '/transsync/dashboard/clientes?tipo=B2B' },
-        { id: 'clientes-b2c', label: 'Clientes (B2C)', icon: User, href: '/transsync/dashboard/clientes?tipo=B2C' },
-        { id: 'drivers', label: 'Drivers', icon: Truck, href: '/transsync/dashboard/drivers' },
-        { id: 'vehiculos', label: 'Vehículos', icon: Car, href: '/transsync/dashboard/vehiculos' },
-        { id: 'administradores', label: 'Administradores', icon: Users, href: '/transsync/dashboard/administradores' },
-        { id: 'puntos-entrega', label: 'Puntos de Entrega', icon: MapPin, href: '/transsync/dashboard/puntos-entrega' },
+        { id: 'clientes-b2b', label: 'Clientes (B2B)', icon: Building2, href: '/dashboard/clientes?tipo=B2B' },
+        { id: 'clientes-b2c', label: 'Clientes (B2C)', icon: User, href: '/dashboard/clientes?tipo=B2C' },
+        { id: 'drivers', label: 'Drivers', icon: Truck, href: '/dashboard/drivers' },
+        { id: 'vehiculos', label: 'Vehículos', icon: Car, href: '/dashboard/vehiculos' },
+        { id: 'administradores', label: 'Administradores', icon: Users, href: '/dashboard/administradores' },
+        { id: 'puntos-entrega', label: 'Puntos de Entrega', icon: MapPin, href: '/dashboard/puntos-entrega' },
       ]
     },
     {
       title: 'Operación Viajes',
       items: [
-        { id: 'viajes', label: 'Viajes', icon: Package, href: '/transsync/dashboard/viajes' },
-        { id: 'ordenes', label: 'Órdenes de Servicio', icon: Package, href: '/transsync/dashboard/ordenes' },
-        { id: 'incidentes', label: 'Incidentes', icon: AlertCircle, iconColor: '#C23A22', href: '/transsync/dashboard/incidentes', badge: '3' },
-        { id: 'generador-viajes', label: 'Generador de Viajes', icon: Play, href: '/transsync/dashboard/generador-viajes' },
-        { id: 'monitoreo', label: 'Monitoreo En Vivo', icon: MapPin, href: '/transsync/dashboard/monitoreo' },
+        { id: 'viajes', label: 'Viajes', icon: Package, href: '/dashboard/viajes' },
+        { id: 'ordenes', label: 'Órdenes de Servicio', icon: Package, href: '/dashboard/ordenes' },
+        { id: 'incidentes', label: 'Incidentes', icon: AlertCircle, iconColor: '#C23A22', href: '/dashboard/incidentes', badge: '3' },
+        { id: 'generador-viajes', label: 'Generador de Viajes', icon: Play, href: '/dashboard/generador-viajes' },
+        { id: 'monitoreo', label: 'Monitoreo En Vivo', icon: MapPin, href: '/dashboard/monitoreo' },
       ]
     },
     {
       title: 'Logística Rutas',
       items: [
-        { id: 'rutas', label: 'Rutas', icon: Route, href: '/transsync/dashboard/rutas' },
-        { id: 'generador-rutas', label: 'Generador de Rutas', icon: Package, href: '/transsync/dashboard/generador-rutas' },
-        { id: 'monitoreo-rutas', label: 'Monitoreo En Vivo', icon: MapPin, href: '/transsync/dashboard/monitoreo-rutas' },
+        { id: 'rutas', label: 'Rutas', icon: Route, href: '/dashboard/rutas' },
+        { id: 'generador-rutas', label: 'Generador de Rutas', icon: Package, href: '/dashboard/generador-rutas' },
+        { id: 'monitoreo-rutas', label: 'Monitoreo En Vivo', icon: MapPin, href: '/dashboard/monitoreo-rutas' },
       ]
     }
   ];

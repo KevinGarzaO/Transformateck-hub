@@ -21,7 +21,7 @@ export default function transsyncLanding() {
           <Link href="#solutions" className="text-sm font-bold text-[#5C7480] hover:text-[#0E2A3A] transition-colors">Soluciones</Link>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/transsync/dashboard/inicio" className="btn btn-solid px-6 py-2.5 rounded-full text-sm">Prueba el Panel</Link>
+          <Link href="/app" className="btn btn-solid px-6 py-2.5 rounded-full text-sm">Prueba el Panel</Link>
         </div>
       </nav>
 
@@ -41,7 +41,7 @@ export default function transsyncLanding() {
               TransSync es el TMS líder en México para la gestión de flotas, monitoreo de última milla y automatización de despacho. Optimiza tus rutas y reduce costos operativos hoy mismo.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/transsync/dashboard/inicio" className="px-8 py-4 bg-[#0E2A3A] text-white rounded-2xl font-bold text-lg hover:bg-[#1A8FBF] transition-all shadow-xl shadow-primary/10 flex items-center gap-3 group">
+              <Link href="/app" className="px-8 py-4 bg-[#0E2A3A] text-white rounded-2xl font-bold text-lg hover:bg-[#1A8FBF] transition-all shadow-xl shadow-primary/10 flex items-center gap-3 group">
                 Comenzar ahora <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <button className="px-8 py-4 bg-white text-[#0E2A3A] border border-ink-100 rounded-2xl font-bold text-lg hover:bg-ink-50 transition-all flex items-center gap-3">
