@@ -1,6 +1,9 @@
 {
   "name": "transformateck",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "packageManager": "npm@10.8.2",
   "workspaces": [
     "apps/*",
