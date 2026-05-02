@@ -27,13 +27,14 @@ export function middleware(req: NextRequest) {
     }
   } else if (hostname.includes('one.transformateck.com')) {
     // Rutas limpias para el dominio principal de identidad
-    if (pathname === '/login') {
+    const cleanPath = pathname.replace(/\/$/, ''); // Quitar barra final si existe
+    if (cleanPath === '/login') {
       pathname = '/cuenta/login';
       isRewritten = true;
-    } else if (pathname === '/portal') {
+    } else if (cleanPath === '/portal') {
       pathname = '/cuenta/portal';
       isRewritten = true;
-    } else if (pathname === '/registro') {
+    } else if (cleanPath === '/registro') {
       pathname = '/cuenta/registro';
       isRewritten = true;
     }
