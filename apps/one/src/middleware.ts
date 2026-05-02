@@ -61,11 +61,9 @@ export function middleware(req: NextRequest) {
 
   // Rutas protegidas (ej. /avocado/app, /specforge/app, /cuenta/portal)
   if (!token) {
-    const loginUrl = req.nextUrl.clone();
-    // Redirigir al dominio oficial de la cuenta si no tienen sesión
-    loginUrl.host = hostname.includes('transformateck.com') ? 'cuenta.transformateck.com' : loginUrl.host;
-    loginUrl.pathname = '/login';
-    loginUrl.searchParams.set('redirect', pathname);
+    const loginUrl = new URL('https://one.transformateck.com/login', req.url);
+    // Guardar la URL COMPLETA (incluyendo subdominio) para volver exactamente ahí después del login
+    loginUrl.searchParams.set('redirect', req.url);
     return NextResponse.redirect(loginUrl);
   }
 

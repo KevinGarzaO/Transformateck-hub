@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ShieldCheck, ChevronRight, Mail, Lock, Loader2, Sparkles, LayoutGrid, Wallet, UserCircle, Zap } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect');
   const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -19,7 +21,12 @@ export default function LoginPage() {
       // MODO DISEÑO: Bypass backend
       document.cookie = "one_token=design_mode; path=/";
       await new Promise(resolve => setTimeout(resolve, 1000));
-      router.push('/cuenta/portal');
+      
+      if (redirect) {
+        window.location.href = redirect;
+      } else {
+        router.push('/cuenta/portal');
+      }
     } catch {
       setError('Error en modo diseño');
     }
