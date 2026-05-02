@@ -3,11 +3,7 @@
 import { useEffect } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { GoogleAnalytics } from '@next/third-parties/google'
-
-interface AnalyticsProps {
-  gaId: string
-  metaPixelId: string
-}
+import { getAnalyticsIds } from '@/lib/analytics/getAnalyticsId'
 
 declare global {
   interface Window {
@@ -15,16 +11,19 @@ declare global {
   }
 }
 
-export function Analytics({ gaId, metaPixelId }: AnalyticsProps) {
+export function Analytics() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const { gaId, metaPixelId } = getAnalyticsIds()
 
   useEffect(() => {
     // Disparar pageview en Meta Pixel en cada cambio de ruta
-    if (typeof window !== 'undefined' && window.fbq) {
+    if (typeof window !== 'undefined' && window.fbq && metaPixelId) {
       window.fbq('track', 'PageView')
     }
-  }, [pathname, searchParams])
+  }, [pathname, searchParams, metaPixelId])
+
+  if (!gaId || !metaPixelId) return null
 
   return (
     <>
