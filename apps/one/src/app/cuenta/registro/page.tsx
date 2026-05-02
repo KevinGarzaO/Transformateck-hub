@@ -86,8 +86,8 @@ export default function RegistroPage() {
                 required 
                 type="text" 
                 style={{ width: '100%', padding: '14px 16px 14px 48px', backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', color: '#fff', outline: 'none', transition: 'border-color 0.2s', fontSize: '0.95rem' }} 
-                onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
-                onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
+                onFocus={(e) => e.currentTarget.style.borderColor = '#7C3AED'}
+                onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'}
                 value={form.name} 
                 onChange={e => setForm({ ...form, name: e.target.value })} 
                 placeholder="Kevin Garza" 
@@ -102,8 +102,8 @@ export default function RegistroPage() {
                 required 
                 type="email" 
                 style={{ width: '100%', padding: '14px 16px 14px 48px', backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', color: '#fff', outline: 'none', transition: 'border-color 0.2s', fontSize: '0.95rem' }} 
-                onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
-                onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
+                onFocus={(e) => e.currentTarget.style.borderColor = '#7C3AED'}
+                onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'}
                 value={form.email} 
                 onChange={e => setForm({ ...form, email: e.target.value })} 
                 placeholder="tu@email.com" 
@@ -118,8 +118,8 @@ export default function RegistroPage() {
                 required 
                 type="password" 
                 style={{ width: '100%', padding: '14px 16px 14px 48px', backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', color: '#fff', outline: 'none', transition: 'border-color 0.2s', fontSize: '0.95rem' }} 
-                onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
-                onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
+                onFocus={(e) => e.currentTarget.style.borderColor = '#7C3AED'}
+                onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'}
                 value={form.password} 
                 onChange={e => setForm({ ...form, password: e.target.value })} 
                 placeholder="••••••••" 
@@ -141,8 +141,8 @@ export default function RegistroPage() {
               textTransform: 'uppercase', letterSpacing: '0.05em'
             }} 
             disabled={loading}
-            onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
-            onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
             {loading ? 'Creando Identidad...' : 'Crear mi ID de One'}
           </button>

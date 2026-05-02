@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
+  const prisma = new PrismaClient();
   try {
     const { searchParams } = new URL(request.url);
     const sprintIdStr = searchParams.get('sprintId');
@@ -48,6 +49,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const prisma = new PrismaClient();
   try {
     const { type, title, desc, aiInstructions, projectId, parentId, sprintId } = await request.json();
 
@@ -73,6 +75,7 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
+  const prisma = new PrismaClient();
   try {
     const body = await request.json();
     const { id, title, desc, aiInstructions, state, assignee, sprintId } = body;
@@ -99,6 +102,7 @@ export async function PATCH(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  const prisma = new PrismaClient();
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');

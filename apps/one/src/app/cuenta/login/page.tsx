@@ -133,8 +133,8 @@ export default function LoginPage() {
               textTransform: 'uppercase', letterSpacing: '0.05em'
             }} 
             disabled={loading}
-            onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
-            onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
             {loading ? 'Validando Acceso...' : 'Ingresar a One'}
           </button>

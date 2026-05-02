@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
-import { signToken } from '@/lib/auth';
+import { signToken } from '@/lib/specforge/auth';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
+  const prisma = new PrismaClient();
   try {
     const { email, password } = await request.json();
 

@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { verifyToken } from '@/lib/auth';
+import { verifyToken } from '@/lib/specforge/auth';
 import { cookies } from 'next/headers';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  const prisma = new PrismaClient();
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;

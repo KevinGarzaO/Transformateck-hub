@@ -2,12 +2,13 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import Anthropic from '@anthropic-ai/sdk';
 
-const prisma = new PrismaClient();
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
+  const prisma = new PrismaClient();
+  const anthropic = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY,
+  });
   try {
     const body = await request.json();
     const { prompt, projectId, sprintId } = body;

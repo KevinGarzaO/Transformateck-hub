@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
-import { signToken } from '@/lib/auth';
+import { signToken } from '@/lib/specforge/auth';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
 // POST — register via invitation token
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ token: string }> }
 ) {
+  const prisma = new PrismaClient();
   try {
     const { name, email, password } = await request.json();
     const { token } = await params;

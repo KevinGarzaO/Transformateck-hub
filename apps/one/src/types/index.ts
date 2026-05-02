@@ -15,6 +15,8 @@ export interface Topic {
   tags: string[]
   notes: string
   created: string       // YYYY-MM-DD
+  niche?: string        // NEW: content niche
+  audience?: string     // NEW: target audience
   campaignId?: string   // NEW: group by campaign
   priority?: TopicPriority  // NEW: 1=Alta 2=Media 3=Baja
   seoVolume?: string    // NEW: estimated search volume

@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { verifyToken } from '@/lib/auth';
+import { verifyToken } from '@/lib/specforge/auth';
 import { cookies } from 'next/headers';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
 // GET ?token=xxx — validate token, return invitation details
 export async function GET(request: Request) {
+  const prisma = new PrismaClient();
   try {
     const { searchParams } = new URL(request.url);
     const token = searchParams.get('token');
@@ -53,6 +54,7 @@ export async function GET(request: Request) {
 
 // POST — create an invitation
 export async function POST(request: Request) {
+  const prisma = new PrismaClient();
   try {
     const cookieStore = await cookies();
     const authToken = cookieStore.get('auth_token')?.value;

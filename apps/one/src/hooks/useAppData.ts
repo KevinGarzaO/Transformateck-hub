@@ -4,12 +4,37 @@ import type { Topic, HistoryEntry, CalendarEvent, AppSettings, PromptTemplate, C
 
 // MOCK DATA FOR DESIGN MODE
 const MOCK_TOPICS: Topic[] = [
-  { id: '1', title: 'Tendencias IA 2026', niche: 'Tecnología', audience: 'Developers', status: 'ready', createdAt: new Date().toISOString() },
-  { id: '2', title: 'Productividad con Agentes', niche: 'Business', audience: 'Founders', status: 'draft', createdAt: new Date().toISOString() },
+  { 
+    id: '1', 
+    title: 'Tendencias IA 2026', 
+    niche: 'Tecnología', 
+    audience: 'Developers', 
+    status: 'ready', 
+    tags: ['ia', 'future'], 
+    notes: 'Investigación sobre agentes autónomos.',
+    created: new Date().toISOString().split('T')[0] 
+  },
+  { 
+    id: '2', 
+    title: 'Productividad con Agentes', 
+    niche: 'Business', 
+    audience: 'Founders', 
+    status: 'idea', 
+    tags: ['productivity'], 
+    notes: 'Uso de agentes en flujos de trabajo.',
+    created: new Date().toISOString().split('T')[0] 
+  },
 ]
 
 const MOCK_HISTORY: HistoryEntry[] = [
-  { id: '1', title: 'Post: El futuro de SDD', type: 'linkedin-post', status: 'published', createdAt: new Date().toISOString() },
+  { 
+    id: '1', 
+    topic: 'El futuro de SDD', 
+    topicId: '1', 
+    platforms: ['linkedin-post'], 
+    date: new Date().toISOString().split('T')[0], 
+    wordCount: 450 
+  },
 ]
 
 export function useAppData() {
