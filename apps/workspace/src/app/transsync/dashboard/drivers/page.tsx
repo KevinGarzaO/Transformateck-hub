@@ -392,7 +392,7 @@ function DriversContentInternal() {
 
   const selected = useMemo(() => drivers.find(d => d.id === idParam), [idParam, drivers]);
 
-  const handleClose = () => router.push('/dashboard/drivers');
+  const handleClose = () => router.push('/transsync/dashboard/drivers');
 
   const handleSaveForm = (data: any) => {
     if (data.id) {

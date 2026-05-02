@@ -325,7 +325,7 @@ function VehicleDetail({ vehicle, isCreate = false, onClose, onSave }: { vehicle
                   <span className="k">Conductor Asignado:</span>
                   <span className="v">
                     {vData.driver !== "Sin asignar" ? (
-                      <Link href={`/dashboard/drivers?driverName=${encodeURIComponent(vData.driver)}`} 
+                      <Link href={`/transsync/dashboard/drivers?driverName=${encodeURIComponent(vData.driver)}`} 
                             className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all shadow-sm">
                         {vData.driver} <ExternalLink size={12} />
                       </Link>
@@ -457,7 +457,7 @@ function VehiculosContentInternal() {
     router.push(`?id=${newId}&action=view`);
   };
 
-  const handleClose = () => router.push('/dashboard/vehiculos');
+  const handleClose = () => router.push('/transsync/dashboard/vehiculos');
 
   if (actionParam === 'create') {
     return <VehicleDetail 

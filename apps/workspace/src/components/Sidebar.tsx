@@ -2,8 +2,9 @@ import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Home, Building2, Truck, Package, MapPin, Wallet, BarChart3, LogOut, Car, Users, Route, Play, Bell, AlertCircle, User, ChevronDown, ChevronRight, Menu } from 'lucide-react';
+import dynamic from 'next/dynamic';
 
-const SidebarContent = () => {
+const SidebarContentInternal = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -188,6 +189,11 @@ const SidebarContent = () => {
     </aside>
   );
 };
+
+const SidebarContent = dynamic(() => Promise.resolve(SidebarContentInternal), {
+  ssr: false,
+  loading: () => <div className="w-[80px] bg-[#0E2A3A]" />
+});
 
 const Sidebar = () => (
   <Suspense fallback={<div className="w-[80px] bg-[#0E2A3A]" />}>

@@ -94,15 +94,22 @@ function SortableStop({ stop, index, removeStop }: { stop: any, index: number, r
   );
 }
 
+import dynamic from 'next/dynamic';
+
+const GeneradorRutasContent = dynamic(() => Promise.resolve(GeneradorRutasContentInternal), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-ink-50 animate-pulse flex items-center justify-center text-ink-400 font-black uppercase text-xs tracking-widest">Cargando Generador...</div>
+});
+
 export default function GeneradorRutas() {
   return (
-    <Suspense fallback={<div>Cargando generador...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-ink-500 font-black uppercase text-xs">Iniciando...</div>}>
       <GeneradorRutasContent />
     </Suspense>
   );
 }
 
-function GeneradorRutasContent() {
+function GeneradorRutasContentInternal() {
   const router = useRouter();
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -229,7 +236,7 @@ function GeneradorRutasContent() {
            <div className="flex gap-2 flex-wrap">
              {routeId && (
                <button 
-                 onClick={() => router.push(`/dashboard/monitoreo?routeId=${routeId}`)}
+                 onClick={() => router.push(`/transsync/dashboard/monitoreo?routeId=${routeId}`)}
                  className="bg-orange-50 text-orange-600 px-4 py-2.5 rounded-2xl font-black text-[10px] uppercase hover:bg-orange-100 transition-all flex items-center gap-2 border border-orange-100"
                >
                  <Navigation size={14} className="animate-pulse"/> Monitoreo en Vivo

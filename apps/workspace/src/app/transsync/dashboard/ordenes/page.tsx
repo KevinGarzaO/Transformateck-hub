@@ -112,15 +112,22 @@ function OrderDetail({ order, onClose }: { order: any, onClose: () => void }) {
   );
 }
 
+import dynamic from 'next/dynamic';
+
+const OrdenesContent = dynamic(() => Promise.resolve(OrdenesContentInternal), {
+  ssr: false,
+  loading: () => <div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">Cargando Órdenes...</div>
+});
+
 export default function Ordenes() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">Cargando...</div>}>
+    <Suspense fallback={<div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">Iniciando...</div>}>
       <OrdenesContent />
     </Suspense>
   );
 }
 
-function OrdenesContent() {
+function OrdenesContentInternal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const idParam = searchParams.get('id');
@@ -129,8 +136,8 @@ function OrdenesContent() {
 
   const selected = useMemo(() => data.find(o => o.id === idParam), [idParam, data]);
 
-  if (actionParam === 'create') return <OrderEditor onClose={() => router.push('/dashboard/ordenes')} onSave={(o) => router.push('/dashboard/ordenes')} />;
-  if (selected) return <OrderDetail order={selected} onClose={() => router.push('/dashboard/ordenes')} />;
+  if (actionParam === 'create') return <OrderEditor onClose={() => router.push('/transsync/dashboard/ordenes')} onSave={(o) => router.push('/transsync/dashboard/ordenes')} />;
+  if (selected) return <OrderDetail order={selected} onClose={() => router.push('/transsync/dashboard/ordenes')} />;
 
   return (
     <>

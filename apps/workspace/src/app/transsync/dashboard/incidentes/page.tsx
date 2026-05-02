@@ -93,15 +93,22 @@ function IncidenteDetail({ incidente, onClose, onResolve }: { incidente: any, on
   );
 }
 
+import dynamic from 'next/dynamic';
+
+const IncidentesContent = dynamic(() => Promise.resolve(IncidentesContentInternal), {
+  ssr: false,
+  loading: () => <div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">Cargando Incidentes...</div>
+});
+
 export default function Incidentes() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">Cargando...</div>}>
+    <Suspense fallback={<div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">Iniciando...</div>}>
       <IncidentesContent />
     </Suspense>
   );
 }
 
-function IncidentesContent() {
+function IncidentesContentInternal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const idParam = searchParams.get('id');
@@ -113,7 +120,7 @@ function IncidentesContent() {
     setData(prev => prev.map(i => i.id === idParam ? { ...i, estado: newStatus } : i));
   };
 
-  if (selected) return <IncidenteDetail incidente={selected} onClose={() => router.push('/dashboard/incidentes')} onResolve={handleResolve} />;
+  if (selected) return <IncidenteDetail incidente={selected} onClose={() => router.push('/transsync/dashboard/incidentes')} onResolve={handleResolve} />;
 
   return (
     <>

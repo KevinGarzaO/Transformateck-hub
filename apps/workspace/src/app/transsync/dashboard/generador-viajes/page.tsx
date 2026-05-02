@@ -13,7 +13,7 @@ import { MOCK, VIAJES_MOCK } from '@/utils/data';
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB5aG1ur9_hOUAGmNwo9_TxUtpeFXMsiZM';
 const libraries: ("places" | "geometry")[] = ["places", "geometry"];
 
-function GeneradorViajesContent() {
+function GeneradorViajesContentInternal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const tripId = searchParams.get('id');
@@ -217,9 +217,16 @@ function GeneradorViajesContent() {
   );
 }
 
+import dynamic from 'next/dynamic';
+
+const GeneradorViajesContent = dynamic(() => Promise.resolve(GeneradorViajesContentInternal), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-ink-50 animate-pulse flex items-center justify-center text-ink-400 font-black uppercase text-xs tracking-widest">Cargando Generador...</div>
+});
+
 export default function GeneradorViajes() {
   return (
-    <Suspense fallback={<div>Cargando...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-ink-500 font-black uppercase text-xs">Iniciando...</div>}>
       <GeneradorViajesContent />
     </Suspense>
   );

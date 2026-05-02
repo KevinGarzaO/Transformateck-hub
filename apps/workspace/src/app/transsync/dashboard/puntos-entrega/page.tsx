@@ -393,7 +393,7 @@ function PuntosEntregaContentInternal() {
     router.push(`?id=${newId}&action=view`);
   };
 
-  const handleClose = () => router.push('/dashboard/puntos-entrega');
+  const handleClose = () => router.push('/transsync/dashboard/puntos-entrega');
 
   if (actionParam === 'create') return <PointDetail isCreate={true} onClose={handleClose} onSave={handleSave} />;
   if (selected) {

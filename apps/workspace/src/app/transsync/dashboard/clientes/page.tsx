@@ -649,8 +649,8 @@ function ClientesContentInternal() {
     router.push(`?id=${newId}&action=view&tipo=${tipoParam}`);
   };
  
-  if (actionParam === 'create') return <ClienteDetail isCreate={true} defaultTipo={tipoParam} onClose={() => router.push(`/dashboard/clientes?tipo=${tipoParam}`)} onSave={handleSaveForm} />;
-  if (selected) return <ClienteDetail cliente={selected} onClose={() => router.push(`/dashboard/clientes?tipo=${tipoParam}`)} onSave={actionParam === 'edit' ? handleSaveForm : undefined} />;
+  if (actionParam === 'create') return <ClienteDetail isCreate={true} defaultTipo={tipoParam} onClose={() => router.push('/transsync/dashboard/clientes?tipo=' + tipoParam)} onSave={handleSaveForm} />;
+  if (selected) return <ClienteDetail cliente={selected} onClose={() => router.push('/transsync/dashboard/clientes?tipo=' + tipoParam)} onSave={actionParam === 'edit' ? handleSaveForm : undefined} />;
  
   return (
     <>

@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { Download, Plus, Search, Filter, MapPin, Truck, Box, Navigation, X, AlertTriangle, CheckCircle, Clock, Image as ImageIcon, FileCheck, Calendar, Copy, MoreHorizontal, Play } from 'lucide-react';
 import { GoogleMap, useJsApiLoader, Autocomplete, DirectionsRenderer } from '@react-google-maps/api';
 import { MOCK } from '@/utils/data';
@@ -215,7 +216,7 @@ function TripModal({ onClose, onSave, tripToEdit }: any) {
                     // We map our D-204 style IDs to the D1, D2 style used in Monitoreo mock for now
                     const idMap: any = { 'Esteban Carrillo': 'D1', 'María Olivares': 'D2', 'Jorge Ibáñez': 'D3' };
                     const monitorId = idMap[driver.nombre] || 'D1';
-                    router.push(`/dashboard/monitoreo?driverId=${monitorId}`);
+                    router.push(`/transsync/dashboard/monitoreo?driverId=${monitorId}`);
                   }
                 }}
                 className="w-full bg-orange-50 border border-orange-200 text-orange-700 py-3 rounded-xl text-xs font-black hover:bg-orange-100 transition-all flex items-center justify-center gap-2"
@@ -353,7 +354,7 @@ function TripModal({ onClose, onSave, tripToEdit }: any) {
   );
 }
 
-function ViajesContent() {
+function ViajesContentInternal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [viajes, setViajes] = useState(VIAJES_MOCK);
@@ -436,7 +437,7 @@ function ViajesContent() {
         </div>
         <div className="flex gap-3">
           <button className="btn btn-ghost"><Download size={14}/>Reporte</button>
-          <button className="btn btn-solid" onClick={() => router.push('/dashboard/generador-viajes')}><Plus size={14}/>Crear viaje</button>
+          <button className="btn btn-solid" onClick={() => router.push('/transsync/dashboard/generador-viajes')}><Plus size={14}/>Crear viaje</button>
         </div>
       </div>
 
@@ -521,7 +522,7 @@ function ViajesContent() {
             </thead>
             <tbody className="divide-y divide-ink-50">
               {filtered.map(v => (
-                <tr key={v.id} className="hover:bg-ink-50/50 cursor-pointer group transition-colors" onClick={() => router.push(`/dashboard/generador-viajes?id=${v.id}`)}>
+                <tr key={v.id} className="hover:bg-ink-50/50 cursor-pointer group transition-colors" onClick={() => router.push(`/transsync/dashboard/generador-viajes?id=${v.id}`)}>
                   <td className="px-5 py-4">
                     <div className="text-[13px] font-bold text-primary">{v.id}</div>
                     <div className="text-[11px] text-ink-400 font-medium">{new Date(v.fecha).toLocaleDateString('es-MX')}</div>
@@ -558,7 +559,7 @@ function ViajesContent() {
                         <Copy size={18}/>
                       </button>
                       <button 
-                        onClick={(e) => { e.stopPropagation(); router.push(`/dashboard/generador-viajes?id=${v.id}`); }}
+                        onClick={(e) => { e.stopPropagation(); router.push(`/transsync/dashboard/generador-viajes?id=${v.id}`); }}
                         className="bg-primary text-white px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20"
                       >
                         <Play size={14} fill="currentColor" /> Gestionar
@@ -578,11 +579,16 @@ function ViajesContent() {
       {showModal && <TripModal onClose={() => setShowModal(false)} onSave={handleSave} tripToEdit={selectedTrip} />}
     </>
   );
-}
+};
+
+const ViajesContent = dynamic(() => Promise.resolve(ViajesContentInternal), {
+  ssr: false,
+  loading: () => <div className="p-8 text-center text-ink-500">Cargando gestión de viajes...</div>
+});
 
 export default function Viajes() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-ink-500">Cargando gestión de viajes...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-ink-500">Iniciando...</div>}>
       <ViajesContent />
     </Suspense>
   );

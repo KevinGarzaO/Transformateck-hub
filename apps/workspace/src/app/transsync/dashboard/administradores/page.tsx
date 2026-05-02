@@ -3,6 +3,7 @@
 import React, { useState, useMemo, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { Download, Plus, Search, Filter, Edit, MoreHorizontal, User, Shield, LifeBuoy, X, Mail, Settings, Calendar, Key, Phone, Map, Eye } from 'lucide-react';
 
 const ADMINS_MOCK = [
@@ -229,16 +230,12 @@ function AdminDetail({ admin, isCreate = false, onClose, onSave }: { admin?: any
 }
 
 
+const AdministradoresContent = dynamic(() => Promise.resolve(AdministradoresContentInternal), {
+  ssr: false,
+  loading: () => <div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">Cargando Administradores...</div>
+});
+
 export default function Administradores() {
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => { setMounted(true); }, []);
-
-  if (!mounted) return (
-    <div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">
-      Cargando Administradores...
-    </div>
-  );
-
   return (
     <Suspense fallback={<div className="flex items-center justify-center h-full text-ink-400 font-bold uppercase text-xs tracking-widest">Iniciando...</div>}>
       <AdministradoresContent />
@@ -246,7 +243,7 @@ export default function Administradores() {
   );
 }
 
-function AdministradoresContent() {
+function AdministradoresContentInternal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [params, setParams] = React.useState({ action: null as string | null, id: null as string | null });
@@ -268,7 +265,7 @@ function AdministradoresContent() {
 
   const selected = useMemo(() => admins.find(a => a.id === idParam), [idParam, admins]);
 
-  const handleClose = () => router.push('/dashboard/administradores');
+  const handleClose = () => router.push('/transsync/dashboard/administradores');
 
   const handleSaveForm = (formData: any) => {
     if (actionParam === 'create') {

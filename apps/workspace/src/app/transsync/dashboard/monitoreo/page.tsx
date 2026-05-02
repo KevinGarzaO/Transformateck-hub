@@ -28,7 +28,7 @@ const MAP_OPTIONS = {
   ],
 };
 
-function MonitoreoContent() {
+function MonitoreoContentInternal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { isLoaded } = useJsApiLoader({ id: 'google-map-script', googleMapsApiKey: GOOGLE_MAPS_API_KEY, libraries });
@@ -235,9 +235,16 @@ function MonitoreoContent() {
   );
 }
 
+import dynamic from 'next/dynamic';
+
+const MonitoreoContent = dynamic(() => Promise.resolve(MonitoreoContentInternal), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-ink-50 flex items-center justify-center text-ink-500 font-black uppercase text-xs animate-pulse">Cargando Mapa...</div>
+});
+
 export default function Monitoreo() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-ink-500 font-black uppercase text-xs">Cargando...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-ink-500 font-black uppercase text-xs">Iniciando...</div>}>
       <MonitoreoContent />
     </Suspense>
   );

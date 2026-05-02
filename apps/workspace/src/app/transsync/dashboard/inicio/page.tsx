@@ -56,7 +56,22 @@ const MAP_STYLES = [
 
 const libraries: ("places" | "geometry")[] = ["places", "geometry"];
 
+import dynamic from 'next/dynamic';
+
+const InicioPageContent = dynamic(() => Promise.resolve(InicioPageContentInternal), {
+  ssr: false,
+  loading: () => <div className="flex flex-col items-center justify-center h-full gap-4 text-ink-300 opacity-50"><Truck size={48} className="animate-bounce" /><span className="text-xs font-black uppercase tracking-widest text-center">Cargando Dashboard...</span></div>
+});
+
 export default function InicioPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-ink-500 font-black uppercase text-xs">Iniciando Dashboard...</div>}>
+      <InicioPageContent />
+    </Suspense>
+  );
+}
+
+function InicioPageContentInternal() {
   const router = useRouter();
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
