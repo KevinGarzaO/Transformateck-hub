@@ -65,7 +65,7 @@ const Navbar = () => (
       </div>
 
       <div className="flex items-center gap-4">
-         <a href="http://localhost:3002" className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300">
+         <a href="https://transformateck-hub-one.vercel.app" className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300">
             One
          </a>
          <a href="http://localhost:3001" className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300">
@@ -403,7 +403,7 @@ export default function TransformateckLanding() {
                    ))}
                 </div>
 
-                <a href="http://localhost:3002" className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-5 bg-white text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#7C3AED] hover:text-white transition-all duration-300">
+                <a href="https://transformateck-hub-one.vercel.app" className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-5 bg-white text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#7C3AED] hover:text-white transition-all duration-300">
                   Entrar a One
                 </a>
               </div>
@@ -572,7 +572,7 @@ export default function TransformateckLanding() {
                 <h4 className="text-[#4ECCA3] font-black uppercase tracking-widest text-[10px] mb-6">Nuestros Ecosistemas</h4>
                 <ul className="space-y-4 font-bold text-sm">
                   <li><a href="http://localhost:3001" className="text-white/60 hover:text-white transition-colors">Workspace (Empresas)</a></li>
-                  <li><a href="http://localhost:3002" className="text-white/60 hover:text-white transition-colors">One (Creadores)</a></li>
+                  <li><a href="https://transformateck-hub-one.vercel.app" className="text-white/60 hover:text-white transition-colors">One (Creadores)</a></li>
                 </ul>
               </div>
 
