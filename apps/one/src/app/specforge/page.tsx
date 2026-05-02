@@ -29,7 +29,7 @@ export default function SpecForgeLanding() {
            <Link href="https://github.com" className="p-2 hover:text-[#1A8FBF] transition-colors">
               <Github size={20} />
            </Link>
-           <Link href="/specforge/app" className="px-5 py-2 bg-transparent border border-[#1A8FBF] text-[#1A8FBF] rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-[#1A8FBF] hover:text-[#050505] transition-all shadow-[0_0_10px_rgba(26,143,191,0.1)]">
+           <Link href="/app" className="px-5 py-2 bg-transparent border border-[#1A8FBF] text-[#1A8FBF] rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-[#1A8FBF] hover:text-[#050505] transition-all shadow-[0_0_10px_rgba(26,143,191,0.1)]">
               Launch Dashboard
            </Link>
         </div>
@@ -52,7 +52,7 @@ export default function SpecForgeLanding() {
                
                <div className="flex flex-wrap gap-4">
                   <div className="p-[1px] bg-gradient-to-r from-[#1A8FBF] to-[#4CB89C] rounded-lg group">
-                     <Link href="/specforge/app" className="flex items-center gap-3 px-8 py-4 bg-[#050505] rounded-[7px] text-white font-bold group-hover:bg-transparent transition-all">
+                     <Link href="/app" className="flex items-center gap-3 px-8 py-4 bg-[#050505] rounded-[7px] text-white font-bold group-hover:bg-transparent transition-all">
                         Get Started <ArrowRight size={20} />
                      </Link>
                   </div>
@@ -125,7 +125,7 @@ export default function SpecForgeLanding() {
                   <Cpu size={16} /> AI Driven
                </div>
             </div>
-            <Link href="/specforge/app" className="inline-flex items-center gap-2 text-[#1A8FBF] font-black text-sm uppercase tracking-[0.3em] hover:tracking-[0.4em] transition-all">
+            <Link href="/app" className="inline-flex items-center gap-2 text-[#1A8FBF] font-black text-sm uppercase tracking-[0.3em] hover:tracking-[0.4em] transition-all">
                Launch Console <ArrowRight size={20} />
             </Link>
          </div>
