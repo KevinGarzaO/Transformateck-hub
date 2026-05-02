@@ -27,7 +27,7 @@ const MAP_OPTIONS = {
   ],
 };
 
-function MonitoreoRutasContent() {
+function MonitoreoRutasContentInternal() {
   const router = useRouter();
   const { isLoaded } = useJsApiLoader({ id: 'google-map-script', googleMapsApiKey: GOOGLE_MAPS_API_KEY, libraries });
 
@@ -229,9 +229,16 @@ function MonitoreoRutasContent() {
   );
 }
 
+import dynamic from 'next/dynamic';
+
+const MonitoreoRutasContent = dynamic(() => Promise.resolve(MonitoreoRutasContentInternal), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-ink-50 flex items-center justify-center text-ink-500 font-black uppercase text-xs animate-pulse">Cargando Mapa...</div>
+});
+
 export default function MonitoreoRutas() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-ink-500 font-black uppercase text-xs">Cargando...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-ink-500 font-black uppercase text-xs">Iniciando...</div>}>
       <MonitoreoRutasContent />
     </Suspense>
   );

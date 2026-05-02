@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   Plus, Search, Filter, MapPin, Navigation, MoreHorizontal, 
@@ -15,7 +15,22 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyB5aG1ur9_hOUAGmNwo9_TxUtpeFXMsiZM';
 
 const libraries: ("places" | "geometry")[] = ["places", "geometry"];
 
+import dynamic from 'next/dynamic';
+
+const RutasContent = dynamic(() => Promise.resolve(RutasContentInternal), {
+  ssr: false,
+  loading: () => <div className="p-12 text-center text-ink-400 font-bold uppercase text-xs tracking-widest animate-pulse">Cargando Rutas...</div>
+});
+
 export default function Rutas() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-ink-500 font-black uppercase text-xs">Iniciando...</div>}>
+      <RutasContent />
+    </Suspense>
+  );
+}
+
+function RutasContentInternal() {
   const router = useRouter();
   const [rutas, setRutas] = useState(RUTAS_MOCK);
   const [q, setQ] = useState('');
@@ -67,7 +82,7 @@ export default function Rutas() {
           <p className="text-sm text-[#5C7480] font-medium">Define plantillas de rutas recurrentes para generar viajes rápidos</p>
         </div>
         <button 
-          onClick={() => router.push('/dashboard/generador-rutas')}
+          onClick={() => router.push('/transsync/dashboard/generador-rutas')}
           className="bg-[#F97316] text-white px-5 py-3 rounded-2xl font-black text-sm shadow-lg shadow-orange-200 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2"
         >
           <Plus size={18} /> Crear Nueva Ruta
@@ -136,7 +151,7 @@ export default function Rutas() {
               {filtered.map(ruta => (
                 <tr 
                   key={ruta.id} 
-                  onClick={() => router.push(`/dashboard/generador-rutas?id=${ruta.id}`)}
+                  onClick={() => router.push(`/transsync/dashboard/generador-rutas?id=${ruta.id}`)}
                   className="hover:bg-ink-50/50 transition-colors group cursor-pointer"
                 >
                   <td className="px-6 py-4">
@@ -178,7 +193,7 @@ export default function Rutas() {
                     <div className="flex items-center justify-end gap-2">
                       {ruta.estado === 'Activa' && (
                         <button 
-                          onClick={(e) => { e.stopPropagation(); router.push(`/dashboard/monitoreo?routeId=${ruta.id}`); }}
+                          onClick={(e) => { e.stopPropagation(); router.push(`/transsync/dashboard/monitoreo?routeId=${ruta.id}`); }}
                           className="p-2 text-orange-500 hover:bg-orange-50 rounded-xl transition-all" 
                           title="Monitoreo en Vivo"
                         >
@@ -193,7 +208,7 @@ export default function Rutas() {
                         <Copy size={18} />
                       </button>
                       <button 
-                        onClick={(e) => { e.stopPropagation(); router.push(`/dashboard/generador-rutas?id=${ruta.id}`); }}
+                        onClick={(e) => { e.stopPropagation(); router.push(`/transsync/dashboard/generador-rutas?id=${ruta.id}`); }}
                         className="bg-[#F97316] text-white px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-orange-100"
                       >
                         <Play size={14} fill="currentColor" /> Generar

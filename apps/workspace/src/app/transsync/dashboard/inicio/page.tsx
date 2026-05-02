@@ -57,6 +57,8 @@ const MAP_STYLES = [
 const libraries: ("places" | "geometry")[] = ["places", "geometry"];
 
 import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
 
 const InicioPageContent = dynamic(() => Promise.resolve(InicioPageContentInternal), {
   ssr: false,
