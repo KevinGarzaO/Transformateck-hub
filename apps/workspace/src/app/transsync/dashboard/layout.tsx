@@ -11,7 +11,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="flex flex-col flex-1 min-w-0 h-full">
         <Topbar />
         <main className="flex-1 overflow-y-auto p-8">
-          {children}
+          <Suspense fallback={<div className="text-[10px] font-mono text-slate-400">Sincronizando portal...</div>}>
+            {children}
+          </Suspense>
         </main>
       </div>
     </div>
