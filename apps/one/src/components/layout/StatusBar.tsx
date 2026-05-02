@@ -21,9 +21,10 @@ export default function AvocadoStatusBar({
   const router = useRouter();
 
   const handleLogout = () => {
-    // MODO DISEÑO: Borrar cookie y redirigir
-    document.cookie = "one_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.href = '/cuenta/login';
+    // MODO DISEÑO: Borrar cookie global y redirigir al centro de identidad
+    const domain = window.location.hostname.includes('transformateck.com') ? '; domain=.transformateck.com' : '';
+    document.cookie = `one_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${domain}`;
+    window.location.href = 'https://one.transformateck.com/login';
   };
   return (
     <footer className="statusbar">
