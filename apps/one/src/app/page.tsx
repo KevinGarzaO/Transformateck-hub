@@ -56,7 +56,7 @@ const Navbar = () => (
 
       <div className="flex items-center gap-6">
          <a href="https://transformateck-hub-web.vercel.app/" className="hidden sm:block text-xs font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest">Volver al Hub</a>
-         <Link href="/cuenta/login" className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300 flex items-center gap-2">
+         <Link href="https://cuenta.transformateck.com/login" className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300 flex items-center gap-2">
             Mi Cuenta <ArrowRight size={14} />
          </Link>
       </div>
@@ -118,7 +118,7 @@ export default function OneLanding() {
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
-                <Link href="/cuenta/login" className="px-10 py-5 bg-[#7C3AED] text-white rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(124,58,237,0.5)] transition-all duration-300">
+                <Link href="https://cuenta.transformateck.com/login" className="px-10 py-5 bg-[#7C3AED] text-white rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(124,58,237,0.5)] transition-all duration-300">
                   Comienza tu Viaje <ArrowRight size={16} />
                 </Link>
                 <Link href="#herramientas" className="px-10 py-5 border border-white/20 bg-white/5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:border-[#7C3AED]/50 hover:bg-[#7C3AED]/10 transition-all duration-300">
@@ -323,7 +323,7 @@ export default function OneLanding() {
             <p className="text-lg text-white/50 mb-12 max-w-2xl mx-auto font-medium">
               Crea tu cuenta de Transformateck hoy mismo. Un solo inicio de sesión te dará acceso a Avocado Estudio, La Comunidad y todo el ecosistema One.
             </p>
-            <Link href="/cuenta/login" className="inline-flex px-12 py-6 bg-[#7C3AED] text-white rounded-full font-black text-sm uppercase tracking-[0.2em] hover:scale-105 hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] transition-all duration-300">
+            <Link href="https://cuenta.transformateck.com/login" className="inline-flex px-12 py-6 bg-[#7C3AED] text-white rounded-full font-black text-sm uppercase tracking-[0.2em] hover:scale-105 hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] transition-all duration-300">
                Crear mi Identidad en ONE
             </Link>
           </div>
@@ -340,7 +340,7 @@ export default function OneLanding() {
             <div className="flex flex-wrap justify-center gap-8 text-[10px] font-black uppercase tracking-widest text-white/50">
                <Link href="/avocado" className="hover:text-[#7C3AED] transition-colors">Avocado</Link>
                <Link href="/specforge" className="hover:text-[#7C3AED] transition-colors">SpecForge</Link>
-               <Link href="/cuenta/login" className="hover:text-[#7C3AED] transition-colors">Cuenta</Link>
+               <Link href="https://cuenta.transformateck.com/login" className="hover:text-[#7C3AED] transition-colors">Cuenta</Link>
                <a href="https://transformateck-hub-web.vercel.app/" className="hover:text-white transition-colors">Ir al Hub Central</a>
             </div>
             
