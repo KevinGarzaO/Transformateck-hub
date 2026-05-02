@@ -413,7 +413,7 @@ export default function WorkspacePortal() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <AppGridCard name="TransSync TMS" desc="Gestión inmersiva de transporte y rutas inteligentes." icon={Truck} href="https://transsync.transformateck.com/app" color="from-[#1A8FBF] to-[#2BA0C5]" />
-              <AppGridCard name="Inventario" desc="Control total de existencias y WMS." icon={Box} href="#" color="from-[#F97316] to-[#C2410C]" />
+              <AppGridCard name="Inventario" desc="Control total de existencias y WMS." icon={Box} href="https://inventarios.transformateck.com/app" color="from-[#F97316] to-[#C2410C]" />
               <AppGridCard name="RRHH" desc="Gestión de talento y nóminas corporativas." icon={Users} href="#" color="from-[#4CB89C] to-[#2B8365]" />
             </div>
           </div>
