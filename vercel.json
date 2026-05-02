@@ -1,4 +1,0 @@
-{
-  "installCommand": "npm install --prefix=../.. --package-lock=false --no-audit",
-  "buildCommand": "npx turbo run build --filter=$VERCEL_PROJECT_NAME"
-}
