@@ -6,17 +6,17 @@ import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-mo
 import { Sparkles, ArrowRight, Zap, Globe, Cpu, Check, Instagram, Twitter, Linkedin, User, LayoutGrid, Layers, Activity, Code2, Shield, Database, BarChart3, Fingerprint, MapPin } from 'lucide-react';
 
 // --- ANIMATION VARIANTS ---
-const fadeUp = {
+const fadeUp: any = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
 };
 
-const fadeLeft = {
+const fadeLeft: any = {
   hidden: { opacity: 0, x: -50 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
 };
 
-const staggerContainer = {
+const staggerContainer: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
