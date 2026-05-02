@@ -19,7 +19,10 @@ function LoginForm() {
     setError('');
     try {
       // MODO DISEÑO: Bypass backend
-      document.cookie = "one_token=design_mode; path=/";
+      // Compartir la cookie en todos los subdominios de transformateck.com
+      const domain = window.location.hostname.includes('transformateck.com') ? '; domain=.transformateck.com' : '';
+      document.cookie = `one_token=design_mode; path=/${domain}`;
+      
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       if (redirect) {
