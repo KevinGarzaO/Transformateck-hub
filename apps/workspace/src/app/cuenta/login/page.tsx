@@ -33,7 +33,7 @@ function LoginForm() {
       if (redirect) {
         window.location.href = redirect;
       } else {
-        router.push('/cuenta/portal');
+        router.push('/app');
       }
     }, 1200);
   };

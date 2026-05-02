@@ -118,7 +118,7 @@ export default function WorkspaceLanding() {
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
-                <Link href="/cuenta/portal" className="px-10 py-5 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(78,204,163,0.5)] transition-all duration-300">
+                <Link href="/app" className="px-10 py-5 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(78,204,163,0.5)] transition-all duration-300">
                   Acceder al Portal <ArrowRight size={18} />
                 </Link>
                 <Link href="#modulos" className="px-10 py-5 border border-white/20 bg-white/5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:border-[#4ECCA3]/50 hover:bg-[#4ECCA3]/10 transition-all duration-300">
@@ -334,7 +334,7 @@ export default function WorkspaceLanding() {
             <p className="text-lg text-white/50 mb-12 max-w-2xl mx-auto font-medium">
               Obtén acceso a TransSync, Nexus y Kardex desde una sola cuenta. Registra tu empresa hoy mismo y moderniza tus operaciones logísticas.
             </p>
-            <Link href="/cuenta/portal" className="inline-flex px-12 py-6 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-sm uppercase tracking-[0.2em] hover:scale-105 hover:shadow-[0_0_50px_rgba(78,204,163,0.5)] transition-all duration-300">
+            <Link href="/app" className="inline-flex px-12 py-6 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-sm uppercase tracking-[0.2em] hover:scale-105 hover:shadow-[0_0_50px_rgba(78,204,163,0.5)] transition-all duration-300">
               Crear Cuenta B2B
             </Link>
           </div>
@@ -352,7 +352,7 @@ export default function WorkspaceLanding() {
                <Link href="/transsync" className="hover:text-[#4ECCA3] transition-colors">TransSync TMS</Link>
                <Link href="#" className="hover:text-[#4ECCA3] transition-colors">Nexus HR</Link>
                <Link href="#" className="hover:text-[#4ECCA3] transition-colors">Kardex OS</Link>
-               <Link href="/cuenta/portal" className="hover:text-[#4ECCA3] transition-colors">Cuenta</Link>
+               <Link href="/app" className="hover:text-[#4ECCA3] transition-colors">Cuenta</Link>
                <a href="https://transformateck-hub-web.vercel.app/" className="hover:text-white transition-colors">Ir al Hub Central</a>
             </div>
             

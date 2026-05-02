@@ -41,7 +41,7 @@ export default function WorkspaceRegisterPage() {
     document.cookie = "workspace_token=mock_token_reg; path=/; max-age=86400";
     
     setTimeout(() => {
-      router.push('/cuenta/portal');
+      router.push('/app');
     }, 1500);
   };
 

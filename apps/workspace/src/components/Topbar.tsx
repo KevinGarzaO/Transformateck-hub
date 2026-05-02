@@ -68,7 +68,7 @@ const Topbar = () => {
             <div className="absolute top-full right-[-108px] mt-4 w-64 bg-white border border-[#ECF1F3] rounded-[32px] shadow-2xl p-5 z-[100] animate-in fade-in slide-in-from-top-2 duration-300">
               <div className="text-[9px] font-black uppercase tracking-widest text-[#8497A0] mb-4 px-2 text-center">TransSync<span className="text-[#4ECCA3]">.</span> Apps</div>
               <div className="grid grid-cols-2 gap-2">
-                <AppIconCell name="Cuenta" icon={User} href="/cuenta/portal" color="bg-[#5C7480]" onClick={() => setShowApps(false)} />
+                <AppIconCell name="Cuenta" icon={User} href="/app" color="bg-[#5C7480]" onClick={() => setShowApps(false)} />
                 <AppIconCell name="TransSync" icon={Truck} href="/transsync/dashboard/inicio" color="bg-primary" onClick={() => setShowApps(false)} />
                 <AppIconCell name="Inventario" icon={Box} href="#" color="bg-[#F97316]" onClick={() => setShowApps(false)} />
                 <AppIconCell name="RRHH" icon={Users} href="#" color="bg-[#4CB89C]" onClick={() => setShowApps(false)} />
