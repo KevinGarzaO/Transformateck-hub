@@ -9,16 +9,22 @@ export function middleware(req: NextRequest) {
   // 1. Mapeo de Subdominios (Rewrites)
   let isRewritten = false;
   if (hostname.includes('avocado.transformateck.com')) {
-    pathname = `/avocado${pathname === '/' ? '' : pathname}`;
-    isRewritten = true;
+    if (!pathname.startsWith('/avocado')) {
+      pathname = `/avocado${pathname === '/' ? '' : pathname}`;
+      isRewritten = true;
+    }
   } else if (hostname.includes('specforge.transformateck.com')) {
-    pathname = `/specforge${pathname === '/' ? '' : pathname}`;
-    isRewritten = true;
+    if (!pathname.startsWith('/specforge')) {
+      pathname = `/specforge${pathname === '/' ? '' : pathname}`;
+      isRewritten = true;
+    }
   } else if (hostname.includes('cuenta.transformateck.com')) {
-    // Si entran a la raíz de la cuenta, enviarlos al portal
-    if (pathname === '/') pathname = '/portal';
-    pathname = `/cuenta${pathname}`;
-    isRewritten = true;
+    if (!pathname.startsWith('/cuenta')) {
+      // Si entran a la raíz de la cuenta, enviarlos al portal
+      if (pathname === '/') pathname = '/portal';
+      pathname = `/cuenta${pathname}`;
+      isRewritten = true;
+    }
   }
 
   // Actualizar el pathname para que la lógica de Auth funcione con las rutas reales

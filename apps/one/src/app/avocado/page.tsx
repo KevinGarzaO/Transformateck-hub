@@ -21,8 +21,8 @@ export default function AvocadoLanding() {
            <Link href="#" className="text-xs font-bold uppercase tracking-widest text-white/50 hover:text-white transition-colors">Precios</Link>
         </div>
         <div className="flex items-center gap-6">
-           <Link href="/cuenta/login" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Login</Link>
-           <Link href="/avocado/app" className="px-6 py-3 bg-white text-[#0E1612] rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#4CB89C] hover:text-white transition-all shadow-xl">Comenzar</Link>
+           <Link href="https://cuenta.transformateck.com/login" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Login</Link>
+           <Link href="/app" className="px-6 py-3 bg-white text-[#0E1612] rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#4CB89C] hover:text-white transition-all shadow-xl">Comenzar</Link>
         </div>
       </nav>
 
@@ -44,7 +44,7 @@ export default function AvocadoLanding() {
             </p>
             
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-               <Link href="/avocado/app" className="px-10 py-6 bg-[#4CB89C] text-white rounded-[24px] font-black text-lg hover:scale-105 transition-all shadow-2xl shadow-[#4CB89C]/20 flex items-center gap-4 group">
+               <Link href="/app" className="px-10 py-6 bg-[#4CB89C] text-white rounded-[24px] font-black text-lg hover:scale-105 transition-all shadow-2xl shadow-[#4CB89C]/20 flex items-center gap-4 group">
                   Explorar Estudio <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                </Link>
                <button className="px-10 py-6 bg-white/5 border border-white/10 text-white rounded-[24px] font-black text-lg hover:bg-white/10 transition-all flex items-center gap-4 group">

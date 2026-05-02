@@ -9,9 +9,9 @@ interface AvocadoAppSwitcherProps {
 }
 
 const APPS = [
-  { id: 'cuenta', name: 'Mi Cuenta', desc: 'Perfil y pagos', icon: '🏢', bg: '#7C3AED', available: true, url: '/cuenta/portal' },
-  { id: 'avocado', name: 'Avocado Estudio', desc: 'Contenido con IA', icon: '🥑', bg: '#8B5CF6', available: true, url: '/avocado/app' },
-  { id: 'specforge', name: 'SpecForge-TX', desc: 'SDD para developers', icon: '⚙️', bg: '#4F46E5', available: true, url: '/specforge/app' },
+  { id: 'cuenta', name: 'Mi Cuenta', desc: 'Perfil y pagos', icon: '🏢', bg: '#7C3AED', available: true, url: 'https://cuenta.transformateck.com/portal' },
+  { id: 'avocado', name: 'Avocado Estudio', desc: 'Contenido con IA', icon: '🥑', bg: '#8B5CF6', available: true, url: 'https://avocado.transformateck.com/app' },
+  { id: 'specforge', name: 'SpecForge-TX', desc: 'SDD para developers', icon: '⚙️', bg: '#4F46E5', available: true, url: 'https://specforge.transformateck.com/app' },
   { id: 'invoice', name: 'Invoice-TX', desc: 'Próximamente', icon: '📋', bg: '#1E2D3D', available: false },
   { id: 'leads', name: 'Leads-TX', desc: 'Próximamente', icon: '👥', bg: '#1E2D3D', available: false },
   { id: 'academ', name: 'Academ-TX', desc: 'Próximamente', icon: '🎓', bg: '#1E2D3D', available: false },
