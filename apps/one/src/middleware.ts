@@ -31,7 +31,7 @@ export function middleware(req: NextRequest) {
     if (cleanPath === '/login') {
       pathname = '/cuenta/login';
       isRewritten = true;
-    } else if (cleanPath === '/portal') {
+    } else if (cleanPath === '/portal' || cleanPath === '/app') {
       pathname = '/cuenta/portal';
       isRewritten = true;
     } else if (cleanPath === '/registro') {
@@ -51,9 +51,10 @@ export function middleware(req: NextRequest) {
   const token = req.cookies.get('one_token');
 
   if (isPublicRoute) {
-    if (token && pathname === '/cuenta/login') {
+    if (token && (pathname === '/cuenta/login' || pathname === '/')) {
       const redirectUrl = req.nextUrl.clone();
-      redirectUrl.pathname = '/';
+      // Si ya tiene sesión y va al login o landing, mandarlo a la App
+      redirectUrl.pathname = '/app'; 
       return NextResponse.redirect(redirectUrl);
     }
     return isRewritten ? NextResponse.rewrite(url) : NextResponse.next();
