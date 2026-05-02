@@ -9,49 +9,58 @@ export function middleware(req: NextRequest) {
   // 1. Mapeo de Subdominios (Rewrites)
   let isRewritten = false;
   if (hostname.includes('transsync.transformateck.com')) {
-    pathname = `/transsync${pathname === '/' ? '' : pathname}`;
-    isRewritten = true;
+    if (!pathname.startsWith('/transsync')) {
+      pathname = `/transsync${pathname === '/' ? '' : pathname}`;
+      isRewritten = true;
+    }
   } else if (hostname.includes('inventarios.transformateck.com')) {
-    pathname = `/inventarios${pathname === '/' ? '' : pathname}`;
-    isRewritten = true;
+    if (!pathname.startsWith('/inventarios')) {
+      pathname = `/inventarios${pathname === '/' ? '' : pathname}`;
+      isRewritten = true;
+    }
+  } else if (hostname.includes('workspace.transformateck.com')) {
+    // Rutas limpias para el dominio de identidad de Workspace
+    const cleanPath = pathname.replace(/\/$/, '');
+    if (cleanPath === '/login') {
+      pathname = '/cuenta/login';
+      isRewritten = true;
+    } else if (cleanPath === '/portal' || cleanPath === '/app') {
+      pathname = '/cuenta/portal';
+      isRewritten = true;
+    } else if (cleanPath === '/registro') {
+      pathname = '/cuenta/registro';
+      isRewritten = true;
+    }
   }
 
   // Actualizar el pathname para la lógica de Auth
   url.pathname = pathname;
 
-  // 2. Rutas públicas — no necesitan auth
-  const publicRoutes = ['/', '/transsync', '/inventarios', '/cuenta/login', '/cuenta/registro', '/cuenta/recuperar', '/cuenta/restablecer'];
-  
-  // Modificado para aceptar subrutas (ej. /transsync/app no es público, pero /transsync sí)
-  // El includes original era muy estricto.
-  const isPublicRoute = publicRoutes.some(r => pathname === r || pathname.startsWith(r + '/') && r.includes('cuenta'));
+  // 2. Lógica de Autenticación
+  const isLandingPage = pathname === '/' || pathname === '/transsync' || pathname === '/inventarios';
+  const isAuthPage = pathname.startsWith('/cuenta/login') || pathname.startsWith('/cuenta/registro');
+  const isPublicRoute = isLandingPage || isAuthPage;
 
   // Obtenemos el token de la cookie del ecosistema workspace
   const token = req.cookies.get('workspace_token');
 
   if (isPublicRoute) {
-    // Si tiene el JWT y va al login — redirigir al hub central
-    if (token && pathname === '/cuenta/login') {
+    // Si tiene sesión activa y va al login o landing, mandarlo directo a la App
+    if (token && (isAuthPage || isLandingPage)) {
       const redirectUrl = req.nextUrl.clone();
-      redirectUrl.pathname = '/cuenta/portal';
+      redirectUrl.pathname = '/app';
       return NextResponse.redirect(redirectUrl);
     }
     return isRewritten ? NextResponse.rewrite(url) : NextResponse.next();
   }
 
   // Rutas de aplicación protegidas (ej: /transsync/app/*)
-  // Si no hay token, redirigir al login único con el parámetro de redirección
   if (!token) {
-    const loginUrl = req.nextUrl.clone();
-    // Redirigir al dominio corporativo
-    loginUrl.host = hostname.includes('transformateck.com') ? 'workspace.transformateck.com' : loginUrl.host;
-    loginUrl.pathname = '/cuenta/login';
-    loginUrl.searchParams.set('redirect', pathname);
+    const loginUrl = new URL('https://workspace.transformateck.com/login', req.url);
+    // Guardar URL completa para retorno inteligente
+    loginUrl.searchParams.set('redirect', req.url);
     return NextResponse.redirect(loginUrl);
   }
-
-  // En una fase posterior, aquí podríamos validar el acceso por producto
-  // analizando el contenido del JWT (productAccess[])
   
   return isRewritten ? NextResponse.rewrite(url) : NextResponse.next();
 }

@@ -1,8 +1,6 @@
-'use client';
-
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, 
@@ -16,8 +14,10 @@ import {
   ArrowRight 
 } from 'lucide-react';
 
-export default function WorkspaceLoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect');
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ email: '', password: '' });
 
@@ -25,14 +25,84 @@ export default function WorkspaceLoginPage() {
     e.preventDefault();
     setLoading(true);
     
-    // Establecer cookie de sesión para el ecosistema
-    document.cookie = "workspace_token=mock_token_123; path=/; max-age=86400";
+    // Establecer cookie de sesión para el ecosistema corporativo
+    const domain = window.location.hostname.includes('transformateck.com') ? '; domain=.transformateck.com' : '';
+    document.cookie = `workspace_token=mock_token_123; path=/; max-age=86400${domain}`;
     
     setTimeout(() => {
-      router.push('/cuenta/portal');
+      if (redirect) {
+        window.location.href = redirect;
+      } else {
+        router.push('/cuenta/portal');
+      }
     }, 1200);
   };
 
+  return (
+    <form onSubmit={handleLogin} className="space-y-6">
+      <div className="space-y-2">
+        <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[#94A3B8] ml-1">Correo Corporativo</label>
+        <div className="relative group">
+          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#4ECCA3] transition-colors" size={18} />
+          <input 
+            required
+            type="email" 
+            placeholder="admin@empresa.com"
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-sm font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-[#4ECCA3]/40 focus:bg-white/[0.08] transition-all"
+            value={form.email}
+            onChange={e => setForm({...form, email: e.target.value})}
+          />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex justify-between items-center px-1">
+          <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[#94A3B8]">Contraseña</label>
+          <button type="button" className="text-[9px] font-black uppercase text-white/20 hover:text-white transition-colors tracking-widest">¿Olvidaste?</button>
+        </div>
+        <div className="relative group">
+          <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#4ECCA3] transition-colors" size={18} />
+          <input 
+            required
+            type="password" 
+            placeholder="••••••••••••"
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-sm font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-[#4ECCA3]/40 focus:bg-white/[0.08] transition-all"
+            value={form.password}
+            onChange={e => setForm({...form, password: e.target.value})}
+          />
+        </div>
+      </div>
+      
+      <button 
+        disabled={loading}
+        className="w-full py-5 bg-[#4ECCA3] text-[#050505] rounded-2xl font-black text-xs uppercase tracking-[0.2em] mt-4 flex items-center justify-center gap-3 hover:shadow-[0_0_40px_rgba(78,204,163,0.3)] hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50"
+      >
+        <AnimatePresence mode="wait">
+          {loading ? (
+            <motion.div 
+              key="loader"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="w-5 h-5 border-3 border-[#050505] border-t-transparent rounded-full animate-spin" 
+            />
+          ) : (
+            <motion.div 
+              key="text"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-3"
+            >
+              Ingresar a Workspace <ArrowRight size={16} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </button>
+    </form>
+  );
+}
+
+export default function WorkspaceLoginPage() {
   return (
     <div className="min-h-screen w-full flex overflow-hidden bg-[#050505] font-sans selection:bg-[#4ECCA3] selection:text-[#050505]">
       
@@ -93,66 +163,9 @@ export default function WorkspaceLoginPage() {
             <p className="text-[#94A3B8] font-medium text-sm">Ingresa a tu cuenta Workspace para continuar.</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[#94A3B8] ml-1">Correo Corporativo</label>
-              <div className="relative group">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#4ECCA3] transition-colors" size={18} />
-                <input 
-                  required
-                  type="email" 
-                  placeholder="admin@empresa.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-sm font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-[#4ECCA3]/40 focus:bg-white/[0.08] transition-all"
-                  value={form.email}
-                  onChange={e => setForm({...form, email: e.target.value})}
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between items-center px-1">
-                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[#94A3B8]">Contraseña</label>
-                <button type="button" className="text-[9px] font-black uppercase text-white/20 hover:text-white transition-colors tracking-widest">¿Olvidaste?</button>
-              </div>
-              <div className="relative group">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#4ECCA3] transition-colors" size={18} />
-                <input 
-                  required
-                  type="password" 
-                  placeholder="••••••••••••"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-sm font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-[#4ECCA3]/40 focus:bg-white/[0.08] transition-all"
-                  value={form.password}
-                  onChange={e => setForm({...form, password: e.target.value})}
-                />
-              </div>
-            </div>
-            
-            <button 
-              disabled={loading}
-              className="w-full py-5 bg-[#4ECCA3] text-[#050505] rounded-2xl font-black text-xs uppercase tracking-[0.2em] mt-4 flex items-center justify-center gap-3 hover:shadow-[0_0_40px_rgba(78,204,163,0.3)] hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50"
-            >
-              <AnimatePresence mode="wait">
-                {loading ? (
-                  <motion.div 
-                    key="loader"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="w-5 h-5 border-3 border-[#050505] border-t-transparent rounded-full animate-spin" 
-                  />
-                ) : (
-                  <motion.div 
-                    key="text"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-3"
-                  >
-                    Ingresar a Workspace <ArrowRight size={16} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
-          </form>
+          <Suspense fallback={<div className="text-white/30 text-xs font-mono">Iniciando sesión segura...</div>}>
+            <LoginForm />
+          </Suspense>
 
           <div className="mt-12 text-center">
             <p className="text-sm font-medium text-[#94A3B8]">
@@ -169,3 +182,4 @@ export default function WorkspaceLoginPage() {
     </div>
   );
 }
+
