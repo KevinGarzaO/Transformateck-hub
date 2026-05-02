@@ -31,15 +31,24 @@ export function middleware(req: NextRequest) {
       pathname = '/cuenta/registro';
       isRewritten = true;
     }
+  } else if (pathname === '/app') {
+    // Redirección genérica de /app a dashboard si estamos en un subdominio de producto
+    if (hostname.includes('transsync.')) {
+      pathname = '/transsync/dashboard/inicio';
+      isRewritten = true;
+    } else if (hostname.includes('inventarios.')) {
+      pathname = '/inventarios/dashboard/inicio';
+      isRewritten = true;
+    }
   }
 
   // Actualizar el pathname para la lógica de Auth
   url.pathname = pathname;
 
   // 2. Lógica de Autenticación
-  const isLandingPage = pathname === '/' || pathname === '/transsync' || pathname === '/inventarios';
+  const isLandingPage = pathname === '/' || pathname === '/transsync' || pathname === '/inventarios' || pathname.startsWith('/transsync/landing') || pathname.startsWith('/inventarios/landing');
   const isAuthPage = pathname.startsWith('/cuenta/login') || pathname.startsWith('/cuenta/registro');
-  const isPublicRoute = isLandingPage || isAuthPage;
+  const isPublicRoute = isLandingPage || isAuthPage || pathname === '/transsync' || pathname === '/inventarios';
 
   // Obtenemos el token de la cookie del ecosistema workspace
   const token = req.cookies.get('workspace_token');
