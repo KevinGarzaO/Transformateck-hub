@@ -1,0 +1,49 @@
+{
+  "name": "specforge-tx-cli",
+  "version": "1.0.0",
+  "description": "CLI for SDD (Specification-Driven Development) - create new projects or install into existing ones",
+  "main": "dist/index.js",
+  "bin": {
+    "specforge": "./bin/cli.js",
+    "sftx": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "echo No tests yet",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major",
+    "publish": "npm publish"
+  },
+  "keywords": [
+    "sdd",
+    "spec-driven-development",
+    "cli",
+    "project-generator",
+    "development"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "dotenv": "^17.4.2",
+    "figlet": "^1.11.0",
+    "glob": "^13.0.6",
+    "minimax": "^0.1.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.7.0",
+    "@types/glob": "^8.1.0",
+    "@types/node": "^20.10.0",
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "npm@10.0.0"
+}
