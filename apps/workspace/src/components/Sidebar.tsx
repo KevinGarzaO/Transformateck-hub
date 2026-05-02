@@ -106,9 +106,13 @@ const SidebarContentInternal = () => {
 
   const handleLogout = () => {
     // MODO DISEÑO: Borrar cookie global corporativa y redirigir
+    // Borramos de ambas formas para asegurar (con y sin dominio)
     const domain = window.location.hostname.includes('transformateck.com') ? '; domain=.transformateck.com' : '';
+    document.cookie = `workspace_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
     document.cookie = `workspace_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${domain}`;
-    window.location.href = 'https://workspace.transformateck.com/login';
+    
+    // Redirigir a login (mapeado por middleware a /cuenta/login)
+    window.location.href = '/login';
   };
 
   return (

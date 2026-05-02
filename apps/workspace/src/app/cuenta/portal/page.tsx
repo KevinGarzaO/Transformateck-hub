@@ -191,8 +191,10 @@ export default function WorkspacePortal() {
 
   const handleLogout = (e: React.MouseEvent) => {
     e.preventDefault();
-    document.cookie = "workspace_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    window.location.href = "/cuenta/login";
+    const domain = window.location.hostname.includes('transformateck.com') ? '; domain=.transformateck.com' : '';
+    document.cookie = `workspace_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    document.cookie = `workspace_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${domain}`;
+    window.location.href = "/login";
   };
 
   const menuSections = [
