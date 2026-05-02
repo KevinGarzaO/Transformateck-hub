@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Sparkles, ArrowRight, Activity, MapPin, Layers, Shield, Database, BarChart3, Users, Box } from 'lucide-react';
+import { AnalyticsEvents } from '@/lib/analytics/events';
 
 // --- ANIMATION VARIANTS ---
 const fadeUp: any = {
@@ -56,7 +57,11 @@ const Navbar = () => (
 
       <div className="flex items-center gap-6">
          <a href="https://www.transformateck.com" className="hidden sm:block text-xs font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest">Volver al Hub</a>
-         <Link href="/login" className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300 flex items-center gap-2">
+         <Link 
+           href="/login" 
+           onClick={() => AnalyticsEvents.ctaClick('portal-b2b', 'navbar')}
+           className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300 flex items-center gap-2"
+         >
             Portal B2B <ArrowRight size={14} />
          </Link>
       </div>
@@ -276,7 +281,11 @@ export default function WorkspaceLanding() {
                 </div>
                 <h3 className="text-4xl font-black mb-4 uppercase relative z-10">TransSync TMS</h3>
                 <p className="text-white/50 text-lg leading-relaxed mb-10 relative z-10 max-w-md">Sustituye la gestión de logística tradicional por un sistema inmersivo. Monitorea choferes, analiza rutas y controla tus envíos al segundo.</p>
-                <Link href="/transsync" className="inline-flex relative z-10 items-center justify-center w-full px-8 py-4 bg-white text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#4ECCA3] transition-all duration-300">
+                <Link 
+                  href="/transsync" 
+                  onClick={() => AnalyticsEvents.appClick('transsync-from-workspace')}
+                  className="inline-flex relative z-10 items-center justify-center w-full px-8 py-4 bg-white text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#4ECCA3] transition-all duration-300"
+                >
                   Acceder a Operaciones
                 </Link>
               </motion.div>

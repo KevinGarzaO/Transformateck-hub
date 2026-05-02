@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Sparkles, ArrowRight, User, Terminal, Camera, Globe, Box, Settings, Cpu } from 'lucide-react';
+import { AnalyticsEvents } from '@/lib/analytics/events';
 
 // --- ANIMATION VARIANTS ---
 const fadeUp: any = {
@@ -118,12 +119,18 @@ export default function OneLanding() {
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
-                <Link href="https://one.transformateck.com/login" className="px-10 py-5 bg-[#7C3AED] text-white rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(124,58,237,0.5)] transition-all duration-300">
+              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
+                <Link 
+                  href="https://one.transformateck.com/login" 
+                  onClick={() => AnalyticsEvents.ctaClick('comienza-viaje', 'hero')}
+                  className="px-10 py-5 bg-[#7C3AED] text-white rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(124,58,237,0.5)] transition-all duration-300"
+                >
                   Comienza tu Viaje <ArrowRight size={16} />
                 </Link>
                 <Link href="#herramientas" className="px-10 py-5 border border-white/20 bg-white/5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:border-[#7C3AED]/50 hover:bg-[#7C3AED]/10 transition-all duration-300">
                   Explorar Herramientas
                 </Link>
+              </motion.div>
               </motion.div>
             </motion.div>
 
@@ -265,7 +272,11 @@ export default function OneLanding() {
                 </div>
                 <h3 className="text-4xl font-black mb-4 uppercase relative z-10">Avocado Estudio</h3>
                 <p className="text-white/50 text-lg leading-relaxed mb-10 relative z-10 max-w-md">La plataforma definitiva para creadores. Sincroniza, programa y genera contenido masivo con nuestra inteligencia artificial integrada.</p>
-                <Link href="/avocado" className="inline-flex relative z-10 items-center justify-center w-full px-8 py-4 bg-white text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#7C3AED] hover:text-white transition-all duration-300">
+                <Link 
+                  href="/avocado" 
+                  onClick={() => AnalyticsEvents.appClick('avocado-internal')}
+                  className="inline-flex relative z-10 items-center justify-center w-full px-8 py-4 bg-white text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#7C3AED] hover:text-white transition-all duration-300"
+                >
                   Abrir Aplicación
                 </Link>
               </motion.div>

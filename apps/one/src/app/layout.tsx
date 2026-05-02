@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
+import { Analytics } from "@/components/shared/Analytics";
+import { ANALYTICS_CONFIG } from "@/lib/analytics/config";
 import "./globals.css";
 
 // External styles
@@ -38,6 +41,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Suspense>
+          <Analytics 
+            gaId={ANALYTICS_CONFIG.GA4.one}
+            metaPixelId={ANALYTICS_CONFIG.META_PIXEL.one}
+          />
+        </Suspense>
       </body>
     </html>
   );

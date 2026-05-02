@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { Sparkles, ArrowRight, Zap, Globe, Cpu, Check, Instagram, Twitter, Linkedin, User, LayoutGrid, Layers, Activity, Code2, Shield, Database, BarChart3, Fingerprint, MapPin } from 'lucide-react';
+import { AnalyticsEvents } from '@/lib/analytics/events';
 
 // --- ANIMATION VARIANTS ---
 const fadeUp: any = {
@@ -65,10 +66,18 @@ const Navbar = () => (
       </div>
 
       <div className="flex items-center gap-4">
-         <a href="https://one.transformateck.com" className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300">
+         <a 
+           href="https://one.transformateck.com" 
+           onClick={() => AnalyticsEvents.appClick('one')}
+           className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300"
+         >
             One
          </a>
-         <a href="https://workspace.transformateck.com" className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300">
+         <a 
+           href="https://workspace.transformateck.com" 
+           onClick={() => AnalyticsEvents.appClick('workspace')}
+           className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300"
+         >
             Workspace
          </a>
       </div>
@@ -130,12 +139,18 @@ export default function TransformateckLanding() {
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
-                <Link href="#ecosistemas" className="px-10 py-5 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(78,204,163,0.5)] transition-all duration-300">
+              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
+                <Link 
+                  href="#ecosistemas" 
+                  onClick={() => AnalyticsEvents.ctaClick('ver-ecosistemas', 'hero')}
+                  className="px-10 py-5 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(78,204,163,0.5)] transition-all duration-300"
+                >
                   Ver Ecosistemas <ArrowRight size={18} />
                 </Link>
                 <Link href="#el-problema" className="px-10 py-5 border border-white/20 bg-white/5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:border-[#4ECCA3]/50 hover:bg-[#4ECCA3]/10 transition-all duration-300">
                   El Problema
                 </Link>
+              </motion.div>
               </motion.div>
             </motion.div>
 
@@ -444,7 +459,11 @@ export default function TransformateckLanding() {
               
               {/* FILA 1 */}
               {/* Avocado Estudio (One) */}
-              <a href="https://one.transformateck.com/app" className="bg-[#050505] border border-white/10 hover:border-[#7C3AED]/50 p-10 rounded-3xl relative group transition-colors duration-300 block text-left">
+              <a 
+                href="https://one.transformateck.com/app" 
+                onClick={() => AnalyticsEvents.appClick('avocado')}
+                className="bg-[#050505] border border-white/10 hover:border-[#7C3AED]/50 p-10 rounded-3xl relative group transition-colors duration-300 block text-left"
+              >
                 <div className="flex justify-between items-start mb-8">
                   <div className="px-3 py-1 rounded border border-[#7C3AED]/30 bg-[#7C3AED]/10 text-[10px] uppercase tracking-widest font-black text-[#7C3AED]">Ecosistema One</div>
                   <span className="text-[10px] text-white/40 font-mono border border-white/10 px-2 py-1 rounded">V 1.0</span>
@@ -458,7 +477,11 @@ export default function TransformateckLanding() {
               </a>
 
               {/* Cárgalo TMS (Workspace) */}
-              <a href="https://transsync.transformateck.com" className="bg-[#050505] border border-white/10 hover:border-[#4ECCA3]/50 p-10 rounded-3xl relative group transition-colors duration-300 block text-left">
+              <a 
+                href="https://transsync.transformateck.com" 
+                onClick={() => AnalyticsEvents.appClick('transsync')}
+                className="bg-[#050505] border border-white/10 hover:border-[#4ECCA3]/50 p-10 rounded-3xl relative group transition-colors duration-300 block text-left"
+              >
                 <div className="flex justify-between items-start mb-8">
                   <div className="px-3 py-1 rounded border border-[#4ECCA3]/30 bg-[#4ECCA3]/10 text-[10px] uppercase tracking-widest font-black text-[#4ECCA3]">Ecosistema Workspace</div>
                   <span className="text-[10px] text-white/40 font-mono border border-white/10 px-2 py-1 rounded">V 2.0 B2B</span>
