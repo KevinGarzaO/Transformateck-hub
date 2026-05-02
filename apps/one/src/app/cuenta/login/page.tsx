@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ShieldCheck, ChevronRight, Mail, Lock, Loader2, Sparkles, LayoutGrid, Wallet, UserCircle, Zap } from 'lucide-react';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get('redirect');
@@ -34,58 +34,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden', backgroundColor: '#050505', color: '#fff', fontFamily: 'Inter, sans-serif' }}>
-      {/* LEFT PANEL - Branding */}
-      <div style={{
-        flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px',
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f1a 100%)',
-        borderRight: '1px solid rgba(124, 58, 237, 0.15)', position: 'relative', overflow: 'hidden'
-      }}>
-        {/* Decorative blobs */}
-        <div style={{ position: 'absolute', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%)', top: '-100px', left: '-100px', borderRadius: '50%' }}></div>
-        <div style={{ position: 'absolute', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%)', bottom: '-80px', right: '-80px', borderRadius: '50%' }}></div>
-
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          {/* Logo */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '48px' }}>
-            <div style={{ width: '54px', height: '54px', borderRadius: '16px', background: 'linear-gradient(135deg, #7C3AED, #4F46E5)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 30px rgba(124, 58, 237, 0.4)' }}>
-              <ShieldCheck size={28} color="#fff" />
-            </div>
-            <div>
-              <h1 style={{ fontSize: '1.8rem', fontWeight: 800, margin: 0, background: 'linear-gradient(90deg, #fff, #A78BFA)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.02em' }}>Transformateck ONE</h1>
-              <p style={{ fontSize: '0.85rem', color: '#94A3B8', marginTop: '2px', margin: 0, fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Ecosistema IA Unificado</p>
-            </div>
-          </div>
-
-          {/* Headline */}
-          <h2 style={{ fontSize: '2.8rem', fontWeight: 800, lineHeight: 1.1, marginBottom: '24px', color: '#fff', margin: 0, maxWidth: '600px' }}>
-            Una sola llave para <span style={{ color: '#A78BFA' }}>todo tu potencial builder.</span>
-          </h2>
-          <p style={{ color: '#94A3B8', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '48px', maxWidth: '520px' }}>
-            Accede a Avocado, SpecForge y todas nuestras herramientas con una cuenta centralizada. Gestiona créditos y perfil en un solo lugar.
-          </p>
-
-          {/* Features */}
-          {[
-            { icon: LayoutGrid, title: 'Hub de Aplicaciones', desc: 'Salta entre proyectos y herramientas sin cambiar de cuenta.' },
-            { icon: Wallet, title: 'Billetera Unificada', desc: 'Tus créditos IA fluyen por todo el ecosistema One.' },
-            { icon: UserCircle, title: 'Perfil Maestro', desc: 'Gestiona tu identidad, seguridad y facturación global.' },
-          ].map((f, i) => (
-            <div key={i} style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', marginBottom: '32px' }}>
-              <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(124, 58, 237, 0.1)', border: '1px solid rgba(124, 58, 237, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <f.icon size={20} color="#A78BFA" />
-              </div>
-              <div>
-                <p style={{ fontWeight: 700, color: '#fff', marginBottom: '4px', margin: 0, fontSize: '1rem' }}>{f.title}</p>
-                <p style={{ fontSize: '0.9rem', color: '#94A3B8', margin: 0, lineHeight: 1.4 }}>{f.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* RIGHT PANEL - Form */}
-      <div style={{ width: '520px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px', backgroundColor: '#0a0a0a', flexShrink: 0, borderLeft: '1px solid rgba(255,255,255,0.05)' }}>
+    <>
         <div style={{ marginBottom: '48px' }}>
           <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '12px', color: '#fff', letterSpacing: '-0.02em' }}>Bienvenido 👋</h2>
           <p style={{ color: '#94A3B8', fontSize: '1rem', margin: 0 }}>Ingresa a tu cuenta One para continuar.</p>
@@ -140,12 +89,68 @@ export default function LoginPage() {
               textTransform: 'uppercase', letterSpacing: '0.05em'
             }} 
             disabled={loading}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
             {loading ? 'Validando Acceso...' : 'Ingresar a One'}
           </button>
         </form>
+    </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden', backgroundColor: '#050505', color: '#fff', fontFamily: 'Inter, sans-serif' }}>
+      {/* LEFT PANEL - Branding */}
+      <div style={{
+        flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f1a 100%)',
+        borderRight: '1px solid rgba(124, 58, 237, 0.15)', position: 'relative', overflow: 'hidden'
+      }}>
+        {/* Decorative blobs */}
+        <div style={{ position: 'absolute', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%)', top: '-100px', left: '-100px', borderRadius: '50%' }}></div>
+        <div style={{ position: 'absolute', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%)', bottom: '-80px', right: '-80px', borderRadius: '50%' }}></div>
+
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '48px' }}>
+            <div style={{ width: '54px', height: '54px', borderRadius: '16px', background: 'linear-gradient(135deg, #7C3AED, #4F46E5)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 30px rgba(124, 58, 237, 0.4)' }}>
+              <ShieldCheck size={28} color="#fff" />
+            </div>
+            <div>
+              <h1 style={{ fontSize: '1.8rem', fontWeight: 800, margin: 0, background: 'linear-gradient(90deg, #fff, #A78BFA)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.02em' }}>Transformateck ONE</h1>
+              <p style={{ fontSize: '0.85rem', color: '#94A3B8', marginTop: '2px', margin: 0, fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Ecosistema IA Unificado</p>
+            </div>
+          </div>
+
+          <h2 style={{ fontSize: '2.8rem', fontWeight: 800, lineHeight: 1.1, marginBottom: '24px', color: '#fff', margin: 0, maxWidth: '600px' }}>
+            Una sola llave para <span style={{ color: '#A78BFA' }}>todo tu potencial builder.</span>
+          </h2>
+          <p style={{ color: '#94A3B8', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '48px', maxWidth: '520px' }}>
+            Accede a Avocado, SpecForge y todas nuestras herramientas con una cuenta centralizada. Gestiona créditos y perfil en un solo lugar.
+          </p>
+
+          {[
+            { icon: LayoutGrid, title: 'Hub de Aplicaciones', desc: 'Salta entre proyectos y herramientas sin cambiar de cuenta.' },
+            { icon: Wallet, title: 'Billetera Unificada', desc: 'Tus créditos IA fluyen por todo el ecosistema One.' },
+            { icon: UserCircle, title: 'Perfil Maestro', desc: 'Gestiona tu identidad, seguridad y facturación global.' },
+          ].map((f, i) => (
+            <div key={i} style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', marginBottom: '32px' }}>
+              <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(124, 58, 237, 0.1)', border: '1px solid rgba(124, 58, 237, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <f.icon size={20} color="#A78BFA" />
+              </div>
+              <div>
+                <p style={{ fontWeight: 700, color: '#fff', marginBottom: '4px', margin: 0, fontSize: '1rem' }}>{f.title}</p>
+                <p style={{ fontSize: '0.9rem', color: '#94A3B8', margin: 0, lineHeight: 1.4 }}>{f.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* RIGHT PANEL - Form */}
+      <div style={{ width: '520px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px', backgroundColor: '#0a0a0a', flexShrink: 0, borderLeft: '1px solid rgba(255,255,255,0.05)' }}>
+        <Suspense fallback={<div style={{ color: '#94A3B8' }}>Cargando portal seguro...</div>}>
+          <LoginForm />
+        </Suspense>
 
         <p style={{ marginTop: '40px', fontSize: '0.95rem', color: '#94A3B8', textAlign: 'center' }}>
           ¿Sin cuenta? <Link href="/cuenta/registro" style={{ color: '#A78BFA', textDecoration: 'none', fontWeight: 700 }}>Crea tu ID de One gratis →</Link>
@@ -164,3 +169,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
