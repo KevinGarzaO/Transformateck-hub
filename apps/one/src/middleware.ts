@@ -51,9 +51,12 @@ export function middleware(req: NextRequest) {
   const token = req.cookies.get('one_token');
 
   if (isPublicRoute) {
-    if (token && (pathname === '/cuenta/login' || pathname === '/')) {
+    // Si ya tiene sesión y va al login o a cualquier landing, mandarlo directo a la App
+    const isLandingPage = pathname === '/' || pathname === '/avocado' || pathname === '/specforge';
+    const isLoginPage = pathname === '/cuenta/login';
+
+    if (token && (isLoginPage || isLandingPage)) {
       const redirectUrl = req.nextUrl.clone();
-      // Si ya tiene sesión y va al login o landing, mandarlo a la App
       redirectUrl.pathname = '/app'; 
       return NextResponse.redirect(redirectUrl);
     }
