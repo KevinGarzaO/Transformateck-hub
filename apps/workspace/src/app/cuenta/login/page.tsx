@@ -35,7 +35,7 @@ function LoginForm() {
       if (redirect) {
         window.location.href = redirect;
       } else {
-        router.push('/app');
+        window.location.href = '/app';
       }
     }, 1200);
   };

@@ -38,10 +38,11 @@ export default function WorkspaceRegisterPage() {
     setLoading(true);
     
     // Simular registro y establecer cookie
-    document.cookie = "workspace_token=mock_token_reg; path=/; max-age=86400";
+    const domain = window.location.hostname.includes('transformateck.com') ? '; domain=.transformateck.com' : '';
+    document.cookie = `workspace_token=mock_token_reg; path=/; max-age=86400${domain}`;
     
     setTimeout(() => {
-      router.push('/app');
+      window.location.href = '/app';
     }, 1500);
   };
 
