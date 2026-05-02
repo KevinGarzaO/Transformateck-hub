@@ -44,18 +44,17 @@ export function middleware(req: NextRequest) {
   url.pathname = pathname;
 
   // 2. Lógica de Autenticación
-  const publicRoutes = ['/', '/avocado', '/specforge', '/cuenta/login', '/cuenta/registro'];
-  const isPublicRoute = publicRoutes.some(r => pathname === r || pathname.startsWith(r + '/'));
+  // Definir rutas que son estrictamente landings o públicas
+  const isLandingPage = pathname === '/' || pathname === '/avocado' || pathname === '/specforge';
+  const isAuthPage = pathname.startsWith('/cuenta/login') || pathname.startsWith('/cuenta/registro');
+  const isPublicRoute = isLandingPage || isAuthPage;
 
   // Token para el ecosistema One
   const token = req.cookies.get('one_token');
 
   if (isPublicRoute) {
     // Si ya tiene sesión y va al login o a cualquier landing, mandarlo directo a la App
-    const isLandingPage = pathname === '/' || pathname === '/avocado' || pathname === '/specforge';
-    const isLoginPage = pathname === '/cuenta/login';
-
-    if (token && (isLoginPage || isLandingPage)) {
+    if (token && (isAuthPage || isLandingPage)) {
       const redirectUrl = req.nextUrl.clone();
       redirectUrl.pathname = '/app'; 
       return NextResponse.redirect(redirectUrl);
