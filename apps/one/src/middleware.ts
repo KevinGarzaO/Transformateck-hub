@@ -25,6 +25,18 @@ export function middleware(req: NextRequest) {
       pathname = `/cuenta${pathname}`;
       isRewritten = true;
     }
+  } else if (hostname.includes('one.transformateck.com')) {
+    // Rutas limpias para el dominio principal de identidad
+    if (pathname === '/login') {
+      pathname = '/cuenta/login';
+      isRewritten = true;
+    } else if (pathname === '/portal') {
+      pathname = '/cuenta/portal';
+      isRewritten = true;
+    } else if (pathname === '/registro') {
+      pathname = '/cuenta/registro';
+      isRewritten = true;
+    }
   }
 
   // Actualizar el pathname para que la lógica de Auth funcione con las rutas reales

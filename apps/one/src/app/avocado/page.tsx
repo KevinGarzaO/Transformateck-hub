@@ -21,7 +21,7 @@ export default function AvocadoLanding() {
            <Link href="#" className="text-xs font-bold uppercase tracking-widest text-white/50 hover:text-white transition-colors">Precios</Link>
         </div>
         <div className="flex items-center gap-6">
-           <Link href="https://cuenta.transformateck.com/login" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Login</Link>
+           <Link href="https://one.transformateck.com/login" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Login</Link>
            <Link href="/app" className="px-6 py-3 bg-white text-[#0E1612] rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#4CB89C] hover:text-white transition-all shadow-xl">Comenzar</Link>
         </div>
       </nav>
