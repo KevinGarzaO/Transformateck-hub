@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    turbo: {
-      root: 'C:/Users/kevin/Documentos/GitHub/transformateck',
-    },
-  },
+  transpilePackages: ["@transformateck/auth-one", "@transformateck/ui"],
 };
 
 module.exports = nextConfig;
