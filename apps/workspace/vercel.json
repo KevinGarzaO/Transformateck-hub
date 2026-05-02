@@ -1,5 +1,4 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next"
+  "installCommand": "npm install --prefix=../.. --no-package-lock",
+  "buildCommand": "cd ../.. && npx turbo run build --filter=transsync-admin"
 }
