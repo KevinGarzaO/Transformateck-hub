@@ -13,7 +13,7 @@ export default function transsyncLanding() {
           <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#1A8FBF] to-[#4CB89C] flex items-center justify-center shadow-lg">
             <Truck className="text-white w-5 h-5" />
           </div>
-          <span className="text-[#0E2A3A] font-extrabold text-xl tracking-tight">Cárgalo<sup className="text-[10px] opacity-50 ml-0.5">®</sup></span>
+          <span className="text-[#0E2A3A] font-extrabold text-xl tracking-tight">TransSync<sup className="text-[10px] opacity-50 ml-0.5">®</sup></span>
         </div>
         <div className="hidden md:flex items-center gap-10">
           <Link href="#features" className="text-sm font-bold text-[#5C7480] hover:text-[#0E2A3A] transition-colors">Características</Link>
@@ -21,8 +21,7 @@ export default function transsyncLanding() {
           <Link href="#solutions" className="text-sm font-bold text-[#5C7480] hover:text-[#0E2A3A] transition-colors">Soluciones</Link>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/login" className="text-sm font-bold text-[#0E2A3A]">Entrar</Link>
-          <Link href="/transsync/app/dashboard" className="btn btn-solid px-6 py-2.5 rounded-full text-sm">Prueba el Panel</Link>
+          <Link href="/transsync/dashboard/inicio" className="btn btn-solid px-6 py-2.5 rounded-full text-sm">Prueba el Panel</Link>
         </div>
       </nav>
 
@@ -35,17 +34,14 @@ export default function transsyncLanding() {
 
         <div className="max-w-7xl mx-auto px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A8FBF]/10 text-[#1A8FBF] text-xs font-bold uppercase tracking-widest mb-8 animate-bounce">
-               <Globe size={14} /> Nueva versión 2.0 disponible
-            </div>
             <h1 className="text-7xl font-black text-[#0E2A3A] leading-[1.05] tracking-tight mb-8">
               Logística <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1A8FBF] to-[#4CB89C]">Inteligente</span> en tiempo real.
             </h1>
             <p className="text-xl text-[#5C7480] mb-12 leading-relaxed max-w-xl">
-              Cárgalo es el TMS líder en México para la gestión de flotas, monitoreo de última milla y automatización de despacho. Optimiza tus rutas y reduce costos operativos hoy mismo.
+              TransSync es el TMS líder en México para la gestión de flotas, monitoreo de última milla y automatización de despacho. Optimiza tus rutas y reduce costos operativos hoy mismo.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/transsync/app/dashboard" className="px-8 py-4 bg-[#0E2A3A] text-white rounded-2xl font-bold text-lg hover:bg-[#1A8FBF] transition-all shadow-xl shadow-primary/10 flex items-center gap-3 group">
+              <Link href="/transsync/dashboard/inicio" className="px-8 py-4 bg-[#0E2A3A] text-white rounded-2xl font-bold text-lg hover:bg-[#1A8FBF] transition-all shadow-xl shadow-primary/10 flex items-center gap-3 group">
                 Comenzar ahora <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <button className="px-8 py-4 bg-white text-[#0E2A3A] border border-ink-100 rounded-2xl font-bold text-lg hover:bg-ink-50 transition-all flex items-center gap-3">
@@ -149,7 +145,7 @@ export default function transsyncLanding() {
             <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto relative z-10">Únete a cientos de empresas que ya están ahorrando tiempo y dinero con el TMS más moderno del mercado.</p>
             
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
-               <Link href="/transsync/app/dashboard" className="px-10 py-5 bg-[#1A8FBF] text-white rounded-2xl font-bold text-lg hover:bg-white hover:text-[#0E2A3A] transition-all flex items-center gap-3">
+               <Link href="/transsync/dashboard/inicio" className="px-10 py-5 bg-[#1A8FBF] text-white rounded-2xl font-bold text-lg hover:bg-white hover:text-[#0E2A3A] transition-all flex items-center gap-3">
                   Crear cuenta gratuita <ArrowRight size={20} />
                </Link>
                <button className="px-10 py-5 bg-white/5 text-white border border-white/10 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all">
@@ -170,7 +166,7 @@ export default function transsyncLanding() {
               <div className="w-8 h-8 rounded-lg bg-ink-900 flex items-center justify-center">
                 <Truck className="text-white w-5 h-5" />
               </div>
-              <span className="text-ink-900 font-extrabold text-lg tracking-tight">Cárgalo<sup className="text-[10px] opacity-50 ml-0.5">®</sup></span>
+              <span className="text-ink-900 font-extrabold text-lg tracking-tight">TransSync<sup className="text-[10px] opacity-50 ml-0.5">®</sup></span>
             </div>
             <div className="flex items-center gap-8 text-sm font-medium text-ink-500">
                <span>© 2026 Transformateck. Todos los derechos reservados.</span>

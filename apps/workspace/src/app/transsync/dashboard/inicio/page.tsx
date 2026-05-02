@@ -189,13 +189,13 @@ export default function InicioPage() {
           <button className="flex items-center gap-2 bg-white border border-[#ECF1F3] px-4 py-2 rounded-xl text-xs font-bold text-[#5C7480] hover:bg-ink-50 transition-all shadow-sm"><Calendar size={14} />Sep 26 – Oct 25</button>
           <button className="flex items-center gap-2 bg-white border border-[#ECF1F3] px-4 py-2 rounded-xl text-xs font-bold text-[#5C7480] hover:bg-ink-50 transition-all shadow-sm"><Download size={14} />Exportar</button>
           <button
-            onClick={() => router.push('/dashboard/generador-viajes')}
+            onClick={() => router.push('/transsync/dashboard/generador-viajes')}
             className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all"
           >
             <Truck size={14} /> Nuevo Viaje
           </button>
           <button
-            onClick={() => router.push('/dashboard/generador-rutas')}
+            onClick={() => router.push('/transsync/dashboard/generador-rutas')}
             className="flex items-center gap-2 bg-[#F97316] text-white px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-orange-200 hover:scale-[1.02] active:scale-95 transition-all"
           >
             <Navigation size={14} /> Nueva Ruta
@@ -296,7 +296,7 @@ export default function InicioPage() {
             <div className="flex items-center gap-3">
               {selectedId && (
                 <button
-                  onClick={() => router.push(`/dashboard/monitoreo?driverId=${selectedId}`)}
+                  onClick={() => router.push(`/transsync/dashboard/monitoreo?driverId=${selectedId}`)}
                   className="text-[10px] font-black uppercase tracking-widest bg-primary text-white px-3 py-1.5 rounded-lg shadow hover:scale-105 transition-all"
                 >
                   Ver monitoreo →
@@ -342,7 +342,7 @@ export default function InicioPage() {
                     <div
                       className="flex flex-col items-center -translate-x-1/2 -translate-y-[100%] cursor-pointer"
                       style={{ pointerEvents: 'auto' }}
-                      onClick={e => { e.stopPropagation(); router.push(`/dashboard/monitoreo?driverId=${d.id}`); }}
+                      onClick={e => { e.stopPropagation(); router.push(`/transsync/dashboard/monitoreo?driverId=${d.id}`); }}
                     >
                       <div className={`text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-2 shadow-xl transition-all duration-300 whitespace-nowrap ${
                         selectedId === d.id

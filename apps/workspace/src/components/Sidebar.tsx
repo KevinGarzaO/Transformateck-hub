@@ -56,37 +56,37 @@ const Sidebar = () => {
     {
       title: 'Principal',
       items: [
-        { id: 'inicio', label: 'Dashboard', icon: Home, href: '/transsync/app/dashboard' },
-        { id: 'notificaciones', label: 'Notificaciones', icon: Bell, href: '/transsync/app/notificaciones', badge: '5' },
+        { id: 'inicio', label: 'Dashboard', icon: Home, href: '/transsync/dashboard/inicio' },
+        { id: 'notificaciones', label: 'Notificaciones', icon: Bell, href: '/transsync/dashboard/notificaciones', badge: '5' },
       ]
     },
     {
       title: 'Catálogo',
       items: [
-        { id: 'clientes-b2b', label: 'Clientes (B2B)', icon: Building2, href: '/transsync/app/clientes?tipo=B2B' },
-        { id: 'clientes-b2c', label: 'Clientes (B2C)', icon: User, href: '/transsync/app/clientes?tipo=B2C' },
-        { id: 'drivers', label: 'Drivers', icon: Truck, href: '/transsync/app/drivers' },
-        { id: 'vehiculos', label: 'Vehículos', icon: Car, href: '/transsync/app/vehiculos' },
-        { id: 'administradores', label: 'Administradores', icon: Users, href: '/transsync/app/administradores' },
-        { id: 'puntos-entrega', label: 'Puntos de Entrega', icon: MapPin, href: '/transsync/app/puntos-entrega' },
+        { id: 'clientes-b2b', label: 'Clientes (B2B)', icon: Building2, href: '/transsync/dashboard/clientes?tipo=B2B' },
+        { id: 'clientes-b2c', label: 'Clientes (B2C)', icon: User, href: '/transsync/dashboard/clientes?tipo=B2C' },
+        { id: 'drivers', label: 'Drivers', icon: Truck, href: '/transsync/dashboard/drivers' },
+        { id: 'vehiculos', label: 'Vehículos', icon: Car, href: '/transsync/dashboard/vehiculos' },
+        { id: 'administradores', label: 'Administradores', icon: Users, href: '/transsync/dashboard/administradores' },
+        { id: 'puntos-entrega', label: 'Puntos de Entrega', icon: MapPin, href: '/transsync/dashboard/puntos-entrega' },
       ]
     },
     {
       title: 'Operación Viajes',
       items: [
-        { id: 'viajes', label: 'Viajes', icon: Package, href: '/transsync/app/viajes' },
-        { id: 'ordenes', label: 'Órdenes de Servicio', icon: Package, href: '/transsync/app/ordenes' },
-        { id: 'incidentes', label: 'Incidentes', icon: AlertCircle, iconColor: '#C23A22', href: '/transsync/app/incidentes', badge: '3' },
-        { id: 'generador-viajes', label: 'Generador de Viajes', icon: Play, href: '/transsync/app/generador-viajes' },
-        { id: 'monitoreo', label: 'Monitoreo En Vivo', icon: MapPin, href: '/transsync/app/monitoreo' },
+        { id: 'viajes', label: 'Viajes', icon: Package, href: '/transsync/dashboard/viajes' },
+        { id: 'ordenes', label: 'Órdenes de Servicio', icon: Package, href: '/transsync/dashboard/ordenes' },
+        { id: 'incidentes', label: 'Incidentes', icon: AlertCircle, iconColor: '#C23A22', href: '/transsync/dashboard/incidentes', badge: '3' },
+        { id: 'generador-viajes', label: 'Generador de Viajes', icon: Play, href: '/transsync/dashboard/generador-viajes' },
+        { id: 'monitoreo', label: 'Monitoreo En Vivo', icon: MapPin, href: '/transsync/dashboard/monitoreo' },
       ]
     },
     {
       title: 'Logística Rutas',
       items: [
-        { id: 'rutas', label: 'Rutas', icon: Route, href: '/transsync/app/rutas' },
-        { id: 'generador-rutas', label: 'Generador de Rutas', icon: Package, href: '/transsync/app/generador-rutas' },
-        { id: 'monitoreo-rutas', label: 'Monitoreo En Vivo', icon: MapPin, href: '/transsync/app/monitoreo-rutas' },
+        { id: 'rutas', label: 'Rutas', icon: Route, href: '/transsync/dashboard/rutas' },
+        { id: 'generador-rutas', label: 'Generador de Rutas', icon: Package, href: '/transsync/dashboard/generador-rutas' },
+        { id: 'monitoreo-rutas', label: 'Monitoreo En Vivo', icon: MapPin, href: '/transsync/dashboard/monitoreo-rutas' },
       ]
     }
   ];
@@ -103,6 +103,11 @@ const Sidebar = () => {
     }));
   };
 
+  const handleLogout = () => {
+    document.cookie = "workspace_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    window.location.href = "/cuenta/login";
+  };
+
   return (
     <aside className={`${isCollapsed ? 'w-[80px]' : 'w-[280px]'} bg-[#0E2A3A] flex flex-col p-4 gap-1 h-screen transition-all duration-300 ease-in-out overflow-hidden text-[#C9D6DC] border-r border-white/5`}>
       <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} pb-8 pt-2 px-2`}>
@@ -111,7 +116,7 @@ const Sidebar = () => {
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#1A8FBF] to-[#4CB89C] flex items-center justify-center shadow-lg">
               <Car className="text-white w-6 h-6" />
             </div>
-            <span className="text-white font-extrabold text-xl tracking-tight">Cárgalo<sup className="text-[10px] opacity-50 ml-0.5">®</sup></span>
+            <span className="text-white font-extrabold text-xl tracking-tight">TransSync<span className="text-[#4ECCA3]">.</span></span>
           </div>
         )}
         <button 
@@ -172,9 +177,12 @@ const Sidebar = () => {
           </div>
         )}
         {!isCollapsed && (
-          <Link href="/" className="p-2 rounded-xl hover:bg-white/10 text-white transition-colors">
+          <button 
+            onClick={handleLogout}
+            className="p-2 rounded-xl hover:bg-white/10 text-white transition-colors"
+          >
             <LogOut size={16} />
-          </Link>
+          </button>
         )}
       </div>
     </aside>

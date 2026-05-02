@@ -6,18 +6,17 @@ export function middleware(req: NextRequest) {
   const pathname = url.pathname;
 
   // Rutas públicas — no necesitan auth
-  // Incluimos las landings de productos específicos y el login
-  const publicRoutes = ['/', '/transsync', '/inventarios', '/login'];
+  const publicRoutes = ['/', '/transsync', '/inventarios', '/cuenta/login', '/cuenta/registro', '/cuenta/recuperar', '/cuenta/restablecer'];
   
-  const isPublicRoute = publicRoutes.some(r => pathname === r || pathname.startsWith(r + '/'));
+  const isPublicRoute = publicRoutes.includes(pathname);
 
   // Obtenemos el token de la cookie del ecosistema workspace
   const token = req.cookies.get('workspace_token');
 
   if (isPublicRoute) {
     // Si tiene el JWT y va al login — redirigir al hub central
-    if (token && pathname === '/login') {
-      url.pathname = '/';
+    if (token && pathname === '/cuenta/login') {
+      url.pathname = '/cuenta/portal';
       return NextResponse.redirect(url);
     }
     return NextResponse.next();
@@ -26,7 +25,7 @@ export function middleware(req: NextRequest) {
   // Rutas de aplicación protegidas (ej: /transsync/app/*)
   // Si no hay token, redirigir al login único con el parámetro de redirección
   if (!token) {
-    url.pathname = '/login';
+    url.pathname = '/cuenta/login';
     url.searchParams.set('redirect', pathname);
     return NextResponse.redirect(url);
   }
