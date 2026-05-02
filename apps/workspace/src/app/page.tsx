@@ -55,7 +55,7 @@ const Navbar = () => (
       </div>
 
       <div className="flex items-center gap-6">
-         <a href="https://transformateck-hub-web.vercel.app/" className="hidden sm:block text-xs font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest">Volver al Hub</a>
+         <a href="https://www.transformateck.com" className="hidden sm:block text-xs font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest">Volver al Hub</a>
          <Link href="/login" className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300 flex items-center gap-2">
             Portal B2B <ArrowRight size={14} />
          </Link>

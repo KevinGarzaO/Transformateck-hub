@@ -20,8 +20,9 @@ export default function transsyncLanding() {
           <Link href="#pricing" className="text-sm font-bold text-[#5C7480] hover:text-[#0E2A3A] transition-colors">Precios</Link>
           <Link href="#solutions" className="text-sm font-bold text-[#5C7480] hover:text-[#0E2A3A] transition-colors">Soluciones</Link>
         </div>
-        <div className="flex items-center gap-4">
-          <Link href="/app" className="btn btn-solid px-6 py-2.5 rounded-full text-sm">Prueba el Panel</Link>
+        <div className="flex items-center gap-6">
+           <a href="https://www.transformateck.com" className="hidden sm:block text-xs font-bold text-[#5C7480] hover:text-[#0E2A3A] transition-colors uppercase tracking-widest">Volver al Hub</a>
+           <Link href="/app" className="btn btn-solid px-6 py-2.5 rounded-full text-sm">Prueba el Panel</Link>
         </div>
       </nav>
 

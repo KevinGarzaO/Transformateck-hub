@@ -55,7 +55,7 @@ const Navbar = () => (
       </div>
 
       <div className="flex items-center gap-6">
-         <a href="https://transformateck-hub-web.vercel.app/" className="hidden sm:block text-xs font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest">Volver al Hub</a>
+         <a href="https://www.transformateck.com" className="hidden sm:block text-xs font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest">Volver al Hub</a>
          <Link href="https://one.transformateck.com/login" className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300 flex items-center gap-2">
             Mi Cuenta <ArrowRight size={14} />
          </Link>
@@ -341,7 +341,7 @@ export default function OneLanding() {
                <Link href="/avocado" className="hover:text-[#7C3AED] transition-colors">Avocado</Link>
                <Link href="/specforge" className="hover:text-[#7C3AED] transition-colors">SpecForge</Link>
                <Link href="https://one.transformateck.com/login" className="hover:text-[#7C3AED] transition-colors">Cuenta</Link>
-               <a href="https://transformateck-hub-web.vercel.app/" className="hover:text-white transition-colors">Ir al Hub Central</a>
+         <a href="https://www.transformateck.com" className="hover:text-white transition-colors">Ir al Hub Central</a>
             </div>
             
             <p className="text-white/30 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
