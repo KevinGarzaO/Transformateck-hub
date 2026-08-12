@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Transformateck | Innovation Lab",
   description: "Transform your ideas into high-fidelity products.",
+  verification: {
+    google: "googleab820c4f0cd7adc2",
+  },
 };
 
 export default function RootLayout({
