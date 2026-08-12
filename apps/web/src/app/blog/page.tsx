@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getPublicPosts, formatDate, calculateReadingTime } from "@/lib/services/blog";
-import { Sparkles, Calendar, Clock, User, ArrowRight, BookOpen, Search } from "lucide-react";
+import { Sparkles, Calendar, Clock, User, ArrowRight, BookOpen } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Blog & Noticias de IA | Transformateck",
@@ -61,15 +62,18 @@ export default async function BlogIndexPage() {
             <div className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-[#0C0C0C] to-[#050505] overflow-hidden p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-2xl group hover:border-[#4ECCA3]/40 transition-all duration-500">
               
               {/* Imagen del post destacado */}
-              <div className="lg:col-span-7 rounded-2xl overflow-hidden bg-[#111] max-h-[450px] relative border border-white/5">
+              <div className="lg:col-span-7 rounded-2xl overflow-hidden bg-[#111] h-[350px] relative border border-white/5">
                 {featuredPost.image ? (
-                  <img
+                  <Image
                     src={featuredPost.image}
                     alt={featuredPost.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    unoptimized
                   />
                 ) : (
-                  <div className="w-full h-[350px] bg-gradient-to-br from-[#4ECCA3]/20 to-[#7C3AED]/20 flex items-center justify-center text-[#4ECCA3]">
+                  <div className="w-full h-full bg-gradient-to-br from-[#4ECCA3]/20 to-[#7C3AED]/20 flex items-center justify-center text-[#4ECCA3]">
                     <BookOpen size={64} />
                   </div>
                 )}
@@ -105,10 +109,13 @@ export default async function BlogIndexPage() {
                 <div className="flex items-center justify-between pt-6 border-t border-white/10">
                   <div className="flex items-center gap-3">
                     {featuredPost.authorImg ? (
-                      <img
+                      <Image
                         src={featuredPost.authorImg}
-                        alt={featuredPost.authorName}
-                        className="w-10 h-10 rounded-full object-cover border border-[#4ECCA3]/40"
+                        alt={featuredPost.authorName || "Autor"}
+                        width={40}
+                        height={40}
+                        className="rounded-full object-cover border border-[#4ECCA3]/40"
+                        unoptimized
                       />
                     ) : (
                       <div className="w-10 h-10 rounded-full bg-[#4ECCA3]/20 border border-[#4ECCA3] flex items-center justify-center text-[#4ECCA3]">
@@ -158,10 +165,13 @@ export default async function BlogIndexPage() {
                     {/* Imagen de Portada */}
                     <div className="h-52 overflow-hidden bg-[#111] relative border-b border-white/5">
                       {post.image ? (
-                        <img
+                        <Image
                           src={post.image}
                           alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          unoptimized
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-[#4ECCA3]/10 to-transparent flex items-center justify-center text-[#4ECCA3]/40">
@@ -201,10 +211,13 @@ export default async function BlogIndexPage() {
                   <div className="p-6 pt-0 flex items-center justify-between border-t border-white/5 mt-auto">
                     <div className="flex items-center gap-2">
                       {post.authorImg ? (
-                        <img
+                        <Image
                           src={post.authorImg}
-                          alt={post.authorName}
-                          className="w-7 h-7 rounded-full object-cover border border-[#4ECCA3]/30"
+                          alt={post.authorName || "Autor"}
+                          width={28}
+                          height={28}
+                          className="rounded-full object-cover border border-[#4ECCA3]/30"
+                          unoptimized
                         />
                       ) : (
                         <div className="w-7 h-7 rounded-full bg-[#4ECCA3]/20 border border-[#4ECCA3] flex items-center justify-center text-[#4ECCA3] text-xs">

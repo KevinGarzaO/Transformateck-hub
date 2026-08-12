@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPublicPosts, formatDate, calculateReadingTime, getTimestampMs } from "@/lib/services/blog";
 import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
-import { ArrowLeft, Calendar, Clock, User, Sparkles, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, Sparkles } from "lucide-react";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -192,10 +193,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {/* Autor */}
             <div className="flex items-center gap-4 py-4 border-y border-white/10">
               {post.authorImg ? (
-                <img
+                <Image
                   src={post.authorImg}
-                  alt={post.authorName}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-[#4ECCA3]/50"
+                  alt={post.authorName || "Autor"}
+                  width={48}
+                  height={48}
+                  className="rounded-full object-cover border-2 border-[#4ECCA3]/50"
+                  unoptimized
                 />
               ) : (
                 <div className="w-12 h-12 rounded-full bg-[#4ECCA3]/20 border border-[#4ECCA3] flex items-center justify-center text-[#4ECCA3]">
@@ -215,11 +219,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Imagen Principal */}
           {post.image && (
-            <div className="mb-14 rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-[0_0_50px_rgba(0,0,0,0.8)] relative">
-              <img
+            <div className="mb-14 rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-[0_0_50px_rgba(0,0,0,0.8)] relative h-[400px] sm:h-[500px] md:h-[600px]">
+              <Image
                 src={post.image}
                 alt={post.title}
-                className="w-full h-auto max-h-[600px] object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 900px"
+                priority
+                unoptimized
               />
             </div>
           )}

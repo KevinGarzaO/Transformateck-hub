@@ -1,4 +1,5 @@
 import React from "react";
+import NextImage from "next/image";
 
 interface MarkdownRendererProps {
   content: string;
@@ -85,12 +86,16 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
       const src = imageMatch[2];
       elements.push(
         <figure key={index} className="my-10 rounded-2xl overflow-hidden border border-white/10 bg-[#0A0A0A] p-2 shadow-2xl">
-          <img
-            src={src}
-            alt={alt || "Imagen del artículo"}
-            className="w-full h-auto max-h-[550px] object-cover rounded-xl"
-            loading="lazy"
-          />
+          <div className="relative w-full" style={{ minHeight: '300px' }}>
+            <NextImage
+              src={src}
+              alt={alt || "Imagen del artículo"}
+              fill
+              className="object-cover rounded-xl"
+              sizes="(max-width: 768px) 100vw, 800px"
+              unoptimized={src.includes('firebasestorage.googleapis.com') || src.includes('storage.googleapis.com')}
+            />
+          </div>
           {alt && (
             <figcaption className="text-center text-xs text-white/50 mt-3 font-medium">
               {alt}
