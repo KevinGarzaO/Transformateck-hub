@@ -94,6 +94,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     ...allPosts.filter((p) => p.id !== post.id && p.type !== post.type),
   ].slice(0, 3);
 
+  // División del contenido para insertar el CTA en medio del texto
+  const markdownLines = post.markdownContent.split("\n");
+  let contentMid = Math.ceil(markdownLines.length / 2);
+  for (let i = contentMid; i < Math.min(markdownLines.length, contentMid + 10); i++) {
+    if (markdownLines[i].trim() === "") {
+      contentMid = i + 1;
+      break;
+    }
+  }
+  const markdownFirstHalf = markdownLines.slice(0, contentMid).join("\n");
+  const markdownSecondHalf = markdownLines.slice(contentMid).join("\n");
+
   // JSON-LD Schema Org para Google Search Console Rich Snippets
   const jsonLd = {
     "@context": "https://schema.org",
@@ -257,9 +269,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           )}
 
-          {/* Contenido Markdown */}
+          {/* CTA pequeño al inicio del contenido */}
+          <div className="mb-10">
+            <SubscribeForm variant="small" />
+          </div>
+
+          {/* Contenido Markdown con CTA pequeño en medio del texto */}
           <div className="prose prose-invert max-w-none mb-16">
-            <MarkdownRenderer content={post.markdownContent} />
+            <MarkdownRenderer content={markdownFirstHalf} />
+            <div className="my-12">
+              <SubscribeForm variant="small" />
+            </div>
+            <MarkdownRenderer content={markdownSecondHalf} />
+          </div>
+
+          {/* CTA grande al final del contenido */}
+          <div className="mb-16">
+            <SubscribeForm variant="large" />
           </div>
 
           {/* Artículos relacionados */}
@@ -304,42 +330,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </section>
           )}
-
-          {/* Banner de Comunidad al final del artículo */}
-          <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#0F172A] to-[#0A0A0A] border border-[#4ECCA3]/30 relative overflow-hidden shadow-[0_0_40px_rgba(78,204,163,0.15)]">
-            <div className="absolute top-0 right-0 p-8 text-[#4ECCA3]/10 pointer-events-none">
-              <Sparkles size={120} />
-            </div>
-
-            {/* CTA pequeño al inicio */}
-            <div className="mb-4">
-              <SubscribeForm variant="small" />
-            </div>
-
-            <span className="inline-block px-3 py-1 rounded-full bg-[#4ECCA3]/20 text-[#4ECCA3] text-[10px] font-black uppercase tracking-widest mb-4">
-              Comunidad de IA Transformateck
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-black text-white mb-4 uppercase tracking-tight">
-              ¿Quieres estar a la vanguardia de la IA en LATAM?
-            </h3>
-            <p className="text-white/70 max-w-xl mb-8 font-medium">
-              Únete a nuestra comunidad de creadores, desarrolladores e investigadores de Inteligencia Artificial. Recibe noticias, guías y casos de estudio semanales.
-            </p>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-              {/* CTA pequeño en medio */}
-              <SubscribeForm variant="small" />
-              <Link
-                href="/blog"
-                className="px-8 py-4 border border-white/20 rounded-full font-black text-xs uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 transition-all self-start"
-              >
-                Explorar más artículos
-              </Link>
-            </div>
-            {/* CTA grande al final */}
-            <div className="mt-8">
-              <SubscribeForm variant="large" />
-            </div>
-          </div>
         </div>
       </article>
     </>

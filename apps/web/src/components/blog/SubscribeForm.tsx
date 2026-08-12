@@ -65,7 +65,7 @@ export function SubscribeForm({ variant = "small" }: SubscribeFormProps) {
       </button>
       <p className={`${s.legend} text-white/40 leading-snug`}>
         {error ||
-          "¿Aún no te suscribes? Te redirigimos a otra página para que termines y verifiques tu suscripción."}
+          "Al dar clic en suscribirte aún no quedas suscrito: te redirigiremos a otra web donde terminarás y verificarás tu suscripción."}
       </p>
     </form>
   );
