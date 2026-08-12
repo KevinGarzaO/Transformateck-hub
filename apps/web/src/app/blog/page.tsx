@@ -59,7 +59,10 @@ export default async function BlogIndexPage() {
         {/* Post Destacado (Hero Post) */}
         {featuredPost && (
           <section className="mb-20">
-            <div className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-[#0C0C0C] to-[#050505] overflow-hidden p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-2xl group hover:border-[#4ECCA3]/40 transition-all duration-500">
+            <Link
+              href={`/blog/${featuredPost.slug}`}
+              className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-[#0C0C0C] to-[#050505] overflow-hidden p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-2xl group hover:border-[#4ECCA3]/40 transition-all duration-500 cursor-pointer"
+            >
               
               {/* Imagen del post destacado */}
               <div className="lg:col-span-7 rounded-2xl overflow-hidden bg-[#111] h-[350px] relative border border-white/5">
@@ -127,15 +130,12 @@ export default async function BlogIndexPage() {
                     </span>
                   </div>
 
-                  <Link
-                    href={`/blog/${featuredPost.slug}`}
-                    className="px-6 py-3 rounded-full bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest flex items-center gap-2 hover:shadow-[0_0_25px_rgba(78,204,163,0.5)] transition-all"
-                  >
+                  <span className="px-6 py-3 rounded-full bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest flex items-center gap-2 transition-all">
                     Leer Artículo <ArrowRight size={14} />
-                  </Link>
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
           </section>
         )}
 
@@ -157,9 +157,10 @@ export default async function BlogIndexPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {(regularPosts.length > 0 ? regularPosts : posts).map((post) => (
-                <article
+                <Link
                   key={post.id}
-                  className="rounded-3xl border border-white/10 bg-[#0A0A0A] overflow-hidden flex flex-col justify-between hover:border-[#4ECCA3]/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg"
+                  href={`/blog/${post.slug}`}
+                  className="rounded-3xl border border-white/10 bg-[#0A0A0A] overflow-hidden flex flex-col justify-between hover:border-[#4ECCA3]/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg cursor-pointer"
                 >
                   <div>
                     {/* Imagen de Portada */}
@@ -229,14 +230,11 @@ export default async function BlogIndexPage() {
                       </span>
                     </div>
 
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#4ECCA3] hover:text-white transition-colors"
-                    >
+                    <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#4ECCA3] group-hover:text-white transition-colors">
                       Leer <ArrowRight size={14} />
-                    </Link>
+                    </span>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           )}
