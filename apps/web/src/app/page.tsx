@@ -52,34 +52,32 @@ const Navbar = () => (
     className="fixed top-0 left-0 right-0 p-6 px-8 md:px-16 z-50 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5"
   >
     <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-      <div className="flex items-center gap-3">
+      <Link href="/" className="flex items-center gap-3">
          <div className="w-8 h-8 rounded bg-[#4ECCA3] flex items-center justify-center shadow-[0_0_15px_rgba(78,204,163,0.5)]">
             <Cpu size={16} className="text-[#050505]" />
          </div>
          <span className="text-xl font-black tracking-tighter text-white">Transformateck</span>
-      </div>
+      </Link>
       
-      <div className="hidden lg:flex items-center gap-12 bg-white/5 backdrop-blur-md px-8 py-3 rounded-full border border-[#4ECCA3]/20">
-         {['El Problema', 'Ecosistemas', 'Productos', 'Manifiesto'].map((item, i) => (
-            <Link key={i} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-xs font-bold text-white/70 hover:text-[#4ECCA3] transition-colors tracking-widest uppercase">{item}</Link>
-         ))}
+      <div className="hidden lg:flex items-center gap-10 bg-white/5 backdrop-blur-md px-8 py-3 rounded-full border border-[#4ECCA3]/20">
+         <Link href="#comunidad" className="text-xs font-bold text-white/70 hover:text-[#4ECCA3] transition-colors tracking-widest uppercase">Comunidad</Link>
+         <Link href="/blog" className="text-xs font-bold text-white/70 hover:text-[#4ECCA3] transition-colors tracking-widest uppercase">Blog & IA</Link>
+         <Link href="#manifiesto" className="text-xs font-bold text-white/70 hover:text-[#4ECCA3] transition-colors tracking-widest uppercase">Manifiesto</Link>
       </div>
 
       <div className="flex items-center gap-4">
-         <a 
-           href="https://one.transformateck.com" 
-           onClick={() => AnalyticsEvents.appClick('one')}
+         <Link 
+           href="/blog" 
            className="px-6 py-3 bg-[#7C3AED] text-white text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300"
          >
-            One
-         </a>
-         <a 
-           href="https://workspace.transformateck.com" 
-           onClick={() => AnalyticsEvents.appClick('workspace')}
+            Blog IA
+         </Link>
+         <Link 
+           href="#comunidad" 
            className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300"
          >
-            Workspace
-         </a>
+            Unirme
+         </Link>
       </div>
     </div>
   </motion.nav>
@@ -93,11 +91,11 @@ const Marquee = () => (
     >
       {[...Array(10)].map((_, i) => (
         <React.Fragment key={i}>
-          <span>Ecosistema One</span>
+          <span>Comunidad de IA</span>
           <Sparkles size={16} />
-          <span>Ecosistema Workspace</span>
+          <span>Innovación LATAM</span>
           <Sparkles size={16} />
-          <span>Tecnología para LATAM</span>
+          <span>Investigación & Desarrollo</span>
           <Sparkles size={16} />
         </React.Fragment>
       ))}
@@ -135,22 +133,19 @@ export default function TransformateckLanding() {
               </motion.h1>
               
               <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/60 max-w-xl mb-12 font-medium">
-                Lo que le falta son las herramientas correctas. Construimos el ecosistema definitivo de software para los creadores y empresas que mueven a Latinoamérica.
+                Impulsamos el ecosistema definitivo de Inteligencia Artificial para la comunidad de desarrolladores, empresas y creadores que transforman Latinoamérica.
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
-              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
                 <Link 
-                  href="#ecosistemas" 
-                  onClick={() => AnalyticsEvents.ctaClick('ver-ecosistemas', 'hero')}
+                  href="/blog" 
                   className="px-10 py-5 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(78,204,163,0.5)] transition-all duration-300"
                 >
-                  Ver Ecosistemas <ArrowRight size={18} />
+                  Explorar Blog de IA <ArrowRight size={18} />
                 </Link>
-                <Link href="#el-problema" className="px-10 py-5 border border-white/20 bg-white/5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:border-[#4ECCA3]/50 hover:bg-[#4ECCA3]/10 transition-all duration-300">
-                  El Problema
+                <Link href="#comunidad" className="px-10 py-5 border border-white/20 bg-white/5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:border-[#4ECCA3]/50 hover:bg-[#4ECCA3]/10 transition-all duration-300">
+                  Unirme a la Comunidad
                 </Link>
-              </motion.div>
               </motion.div>
             </motion.div>
 
@@ -555,6 +550,32 @@ export default function TransformateckLanding() {
           </div>
         </section>
 
+        {/* COMUNIDAD DE IA & BLOG PREVIEW */}
+        <section id="comunidad" className="py-28 px-6 md:px-12 relative z-10 border-t border-white/5 bg-gradient-to-b from-transparent via-[#4ECCA3]/5 to-transparent">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="px-4 py-1.5 rounded-full border border-[#4ECCA3]/30 bg-[#4ECCA3]/10 text-[#4ECCA3] text-[10px] font-black uppercase tracking-[0.3em] inline-block mb-4">
+                Comunidad de Inteligencia Artificial
+              </span>
+              <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-6">
+                Aprende, Investiga y Conecta en LATAM
+              </h2>
+              <p className="text-lg text-white/60 font-medium">
+                Publicamos análisis sobre modelos LLM, agentes autónomos, visión por computadora y casos de éxito de IA aplicados a la industria.
+              </p>
+            </div>
+
+            <div className="flex justify-center mb-12">
+              <Link
+                href="/blog"
+                className="px-10 py-5 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 hover:shadow-[0_0_40px_rgba(78,204,163,0.5)] transition-all duration-300"
+              >
+                Explorar Todos los Artículos <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* MANIFESTO LATAM */}
         <section id="manifiesto" className="py-40 px-6 md:px-12 min-h-screen flex items-center justify-center relative overflow-hidden">
           <div className="max-w-5xl mx-auto text-center relative z-10">
@@ -587,23 +608,24 @@ export default function TransformateckLanding() {
                   <Cpu size={24} className="text-[#050505]" />
                 </div>
                 <p className="text-white/50 font-medium max-w-sm mb-8 leading-relaxed">
-                  Transformateck Innovation Lab. Construyendo la infraestructura digital nativa que América Latina necesita para escalar.
+                  Transformateck Innovation Lab & AI Community. Impulsando el conocimiento y la adopción de Inteligencia Artificial nativa en América Latina.
                 </p>
               </div>
               
               <div>
-                <h4 className="text-[#4ECCA3] font-black uppercase tracking-widest text-[10px] mb-6">Nuestros Ecosistemas</h4>
+                <h4 className="text-[#4ECCA3] font-black uppercase tracking-widest text-[10px] mb-6">Comunidad & Blog</h4>
                 <ul className="space-y-4 font-bold text-sm">
-                  <li><a href="https://workspace.transformateck.com" className="text-white/60 hover:text-white transition-colors">Workspace (Empresas)</a></li>
-                  <li><a href="https://one.transformateck.com" className="text-white/60 hover:text-white transition-colors">One (Creadores)</a></li>
+                  <li><Link href="/blog" className="text-white/60 hover:text-white transition-colors">Blog de IA</Link></li>
+                  <li><Link href="#comunidad" className="text-white/60 hover:text-white transition-colors">Comunidad LATAM</Link></li>
+                  <li><Link href="#manifiesto" className="text-white/60 hover:text-white transition-colors">Manifiesto</Link></li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="text-[#4ECCA3] font-black uppercase tracking-widest text-[10px] mb-6">Nuestros Productos</h4>
+                <h4 className="text-[#4ECCA3] font-black uppercase tracking-widest text-[10px] mb-6">Recursos</h4>
                 <ul className="space-y-4 font-bold text-sm">
-                  <li><Link href="#" className="text-white/60 hover:text-white transition-colors">TransSync TMS</Link></li>
-                  <li><Link href="#" className="text-white/60 hover:text-white transition-colors">Avocado Estudio</Link></li>
+                  <li><Link href="/blog" className="text-white/60 hover:text-white transition-colors">Investigación</Link></li>
+                  <li><Link href="/blog" className="text-white/60 hover:text-white transition-colors">Casos de Estudio</Link></li>
                 </ul>
               </div>
             </div>
