@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Sparkles, ArrowRight, Cpu, BookOpen, BrainCircuit, Bot, Eye, Rocket, Users, Activity } from 'lucide-react';
+import { SubscribeForm } from '@/components/blog/SubscribeForm';
 
 // --- ANIMATION VARIANTS ---
 const fadeUp: any = {
@@ -255,6 +256,16 @@ export default function TransformateckLanding() {
                   >
                     Conocer el Manifiesto
                   </Link>
+                </div>
+
+                <div className="mt-12 border border-[#4ECCA3]/30 bg-[#4ECCA3]/5 rounded-3xl p-8 max-w-xl">
+                  <h3 className="text-2xl font-black uppercase tracking-tight mb-1">
+                    Suscríbete a la newsletter
+                  </h3>
+                  <p className="text-white/60 text-sm font-medium mb-6">
+                    Recibe noticias, guías y casos de estudio semanales sobre IA en LATAM.
+                  </p>
+                  <SubscribeForm variant="large" />
                 </div>
               </div>
 

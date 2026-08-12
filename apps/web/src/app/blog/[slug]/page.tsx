@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getPostBySlug, getPublicPosts, formatDate, calculateReadingTime, getTimestampMs } from "@/lib/services/blog";
 import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
 import { ArrowLeft, Calendar, Clock, User, Sparkles } from "lucide-react";
+import { SubscribeForm } from "@/components/blog/SubscribeForm";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -310,6 +311,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <Sparkles size={120} />
             </div>
 
+            {/* CTA pequeño al inicio */}
+            <div className="mb-4">
+              <SubscribeForm variant="small" />
+            </div>
+
             <span className="inline-block px-3 py-1 rounded-full bg-[#4ECCA3]/20 text-[#4ECCA3] text-[10px] font-black uppercase tracking-widest mb-4">
               Comunidad de IA Transformateck
             </span>
@@ -319,19 +325,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <p className="text-white/70 max-w-xl mb-8 font-medium">
               Únete a nuestra comunidad de creadores, desarrolladores e investigadores de Inteligencia Artificial. Recibe noticias, guías y casos de estudio semanales.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/#comunidad"
-                className="px-8 py-4 bg-[#4ECCA3] text-[#050505] rounded-full font-black text-xs uppercase tracking-widest hover:shadow-[0_0_30px_rgba(78,204,163,0.5)] transition-all"
-              >
-                Unirme a la Comunidad
-              </Link>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+              {/* CTA pequeño en medio */}
+              <SubscribeForm variant="small" />
               <Link
                 href="/blog"
-                className="px-8 py-4 border border-white/20 rounded-full font-black text-xs uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 transition-all"
+                className="px-8 py-4 border border-white/20 rounded-full font-black text-xs uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 transition-all self-start"
               >
                 Explorar más artículos
               </Link>
+            </div>
+            {/* CTA grande al final */}
+            <div className="mt-8">
+              <SubscribeForm variant="large" />
             </div>
           </div>
         </div>

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getPublicPosts, formatDate, calculateReadingTime } from "@/lib/services/blog";
 import { Sparkles, Calendar, Clock, User, ArrowRight, BookOpen } from "lucide-react";
+import { SubscribeForm } from "@/components/blog/SubscribeForm";
 
 export const metadata: Metadata = {
   title: "Blog & Noticias de IA | Transformateck",
@@ -44,6 +46,9 @@ export default async function BlogIndexPage() {
   const posts = await getPublicPosts();
   const featuredPost = posts.length > 0 ? posts[0] : null;
   const regularPosts = posts.length > 1 ? posts.slice(1) : [];
+  const postsList = regularPosts.length > 0 ? regularPosts : posts;
+  const formCount = postsList.length >= 8 ? 4 : postsList.length >= 4 ? 3 : 2;
+  const formInterval = Math.max(1, Math.floor(postsList.length / formCount));
 
   return (
     <>
@@ -202,86 +207,105 @@ export default async function BlogIndexPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {(regularPosts.length > 0 ? regularPosts : posts).map((post) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  className="rounded-3xl border border-white/10 bg-[#0A0A0A] overflow-hidden flex flex-col justify-between hover:border-[#4ECCA3]/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg cursor-pointer"
-                >
-                  <div>
-                    {/* Imagen de Portada */}
-                    <div className="h-52 overflow-hidden bg-[#111] relative border-b border-white/5">
-                      {post.image ? (
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          unoptimized
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#4ECCA3]/10 to-transparent flex items-center justify-center text-[#4ECCA3]/40">
-                          <BookOpen size={40} />
+              {postsList.map((post, index) => {
+                const showForm =
+                  postsList.length > 3 &&
+                  (index + 1) % formInterval === 0 &&
+                  Math.ceil((index + 1) / formInterval) <= formCount;
+                return (
+                  <React.Fragment key={post.id}>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="rounded-3xl border border-white/10 bg-[#0A0A0A] overflow-hidden flex flex-col justify-between hover:border-[#4ECCA3]/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg cursor-pointer"
+                    >
+                      <div>
+                        {/* Imagen de Portada */}
+                        <div className="h-52 overflow-hidden bg-[#111] relative border-b border-white/5">
+                          {post.image ? (
+                            <Image
+                              src={post.image}
+                              alt={post.title}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              unoptimized
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-gradient-to-br from-[#4ECCA3]/10 to-transparent flex items-center justify-center text-[#4ECCA3]/40">
+                              <BookOpen size={40} />
+                            </div>
+                          )}
+                          <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#050505]/80 backdrop-blur-md border border-[#4ECCA3]/30 text-[#4ECCA3] text-[9px] font-black uppercase tracking-wider">
+                            {post.type || "Blog"}
+                          </span>
                         </div>
-                      )}
-                      <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#050505]/80 backdrop-blur-md border border-[#4ECCA3]/30 text-[#4ECCA3] text-[9px] font-black uppercase tracking-wider">
-                        {post.type || "Blog"}
-                      </span>
-                    </div>
 
-                    {/* Contenido */}
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 text-[11px] text-white/50 mb-3 font-medium">
-                        <span className="flex items-center gap-1">
-                          <Calendar size={12} className="text-[#4ECCA3]" />
-                          {formatDate(post.date)}
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1">
-                          <Clock size={12} className="text-[#4ECCA3]" />
-                          {calculateReadingTime(post.markdownContent)} min
-                        </span>
+                        {/* Contenido */}
+                        <div className="p-6">
+                          <div className="flex items-center gap-3 text-[11px] text-white/50 mb-3 font-medium">
+                            <span className="flex items-center gap-1">
+                              <Calendar size={12} className="text-[#4ECCA3]" />
+                              {formatDate(post.date)}
+                            </span>
+                            <span>•</span>
+                            <span className="flex items-center gap-1">
+                              <Clock size={12} className="text-[#4ECCA3]" />
+                              {calculateReadingTime(post.markdownContent)} min
+                            </span>
+                          </div>
+
+                          <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-3 group-hover:text-[#4ECCA3] transition-colors leading-snug line-clamp-2">
+                            {post.title}
+                          </h3>
+
+                          <p className="text-white/60 text-sm font-normal line-clamp-3 leading-relaxed mb-6">
+                            {post.excerpt}
+                          </p>
+                        </div>
                       </div>
 
-                      <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-3 group-hover:text-[#4ECCA3] transition-colors leading-snug line-clamp-2">
-                        {post.title}
-                      </h3>
-
-                      <p className="text-white/60 text-sm font-normal line-clamp-3 leading-relaxed mb-6">
-                        {post.excerpt}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Footer del card */}
-                  <div className="p-6 pt-0 flex items-center justify-between border-t border-white/5 mt-auto">
-                    <div className="flex items-center gap-2">
-                      {post.authorImg ? (
-                        <Image
-                          src={post.authorImg}
-                          alt={post.authorName || "Autor"}
-                          width={28}
-                          height={28}
-                          className="rounded-full object-cover border border-[#4ECCA3]/30"
-                          unoptimized
-                        />
-                      ) : (
-                        <div className="w-7 h-7 rounded-full bg-[#4ECCA3]/20 border border-[#4ECCA3] flex items-center justify-center text-[#4ECCA3] text-xs">
-                          <User size={12} />
+                      {/* Footer del card */}
+                      <div className="p-6 pt-0 flex items-center justify-between border-t border-white/5 mt-auto">
+                        <div className="flex items-center gap-2">
+                          {post.authorImg ? (
+                            <Image
+                              src={post.authorImg}
+                              alt={post.authorName || "Autor"}
+                              width={28}
+                              height={28}
+                              className="rounded-full object-cover border border-[#4ECCA3]/30"
+                              unoptimized
+                            />
+                          ) : (
+                            <div className="w-7 h-7 rounded-full bg-[#4ECCA3]/20 border border-[#4ECCA3] flex items-center justify-center text-[#4ECCA3] text-xs">
+                              <User size={12} />
+                            </div>
+                          )}
+                          <span className="text-xs font-semibold text-white/70 truncate max-w-[120px]">
+                            {post.authorName || "Transformateck"}
+                          </span>
                         </div>
-                      )}
-                      <span className="text-xs font-semibold text-white/70 truncate max-w-[120px]">
-                        {post.authorName || "Transformateck"}
-                      </span>
-                    </div>
 
-                    <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#4ECCA3] group-hover:text-white transition-colors">
-                      Leer <ArrowRight size={14} />
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                        <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#4ECCA3] group-hover:text-white transition-colors">
+                          Leer <ArrowRight size={14} />
+                        </span>
+                      </div>
+                    </Link>
+
+                    {showForm && (
+                      <div className="rounded-3xl border border-[#4ECCA3]/30 bg-[#0A0A0A] p-6 flex flex-col justify-center shadow-lg">
+                        <span className="text-[#4ECCA3] text-[10px] font-black uppercase tracking-widest mb-2">
+                          Newsletter de IA
+                        </span>
+                        <h3 className="text-lg font-black uppercase tracking-tight text-white mb-4 leading-snug">
+                          Recibe noticias, guías y casos de estudio en tu correo
+                        </h3>
+                        <SubscribeForm variant="medium" />
+                      </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
             </div>
           )}
         </section>

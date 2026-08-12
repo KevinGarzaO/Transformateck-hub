@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, SearchX } from "lucide-react";
+import { SubscribeForm } from "@/components/blog/SubscribeForm";
 
 export const metadata: Metadata = {
   title: "Página no encontrada | Transformateck",
@@ -43,6 +44,16 @@ export default function NotFound() {
           >
             Explorar el Blog
           </Link>
+        </div>
+
+        <div className="mt-12 border border-[#4ECCA3]/30 bg-[#4ECCA3]/5 rounded-3xl p-8 text-left">
+          <h2 className="text-xl font-black uppercase tracking-tight text-white mb-1">
+            Suscríbete a la newsletter
+          </h2>
+          <p className="text-sm text-white/60 font-medium mb-6">
+            Recibe noticias, guías y casos de estudio semanales sobre IA en LATAM.
+          </p>
+          <SubscribeForm variant="large" />
         </div>
       </div>
     </div>
