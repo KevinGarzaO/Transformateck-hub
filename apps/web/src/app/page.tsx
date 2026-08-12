@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Landing from "@/components/home/Landing";
 
-const siteUrl = "https://transformateck.com";
+const siteUrl = "https://www.transformateck.com";
 
 export const metadata: Metadata = {
   title: "Comunidad de IA en LATAM | Blog, Investigación y Networking",

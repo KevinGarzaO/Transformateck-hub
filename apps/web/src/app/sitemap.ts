@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getPublicPosts, getTimestampMs } from '@/lib/services/blog';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://transformateck.com';
+  const baseUrl = 'https://www.transformateck.com';
 
   // Rutas estáticas de la aplicación
   const staticRoutes: MetadataRoute.Sitemap = [

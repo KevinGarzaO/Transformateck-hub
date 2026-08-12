@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const postUrl = `https://transformateck.com/blog/${post.slug}`;
-  const imageUrl = post.image || "https://transformateck.com/hero.png";
+  const postUrl = `https://www.transformateck.com/blog/${post.slug}`;
+  const imageUrl = post.image || "https://www.transformateck.com/hero.png";
   const dateMs = getTimestampMs(post.date);
 
   return {
@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const readingTime = calculateReadingTime(post.markdownContent);
   const formattedDate = formatDate(post.date);
-  const postUrl = `https://transformateck.com/blog/${post.slug}`;
+  const postUrl = `https://www.transformateck.com/blog/${post.slug}`;
   const dateMs = getTimestampMs(post.date);
   const updatedMs = getTimestampMs(post.updatedAt);
 
@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "url": postUrl,
     "headline": post.title,
     "description": post.excerpt,
-    "image": [post.image || "https://transformateck.com/hero.png"],
+    "image": [post.image || "https://www.transformateck.com/hero.png"],
     "datePublished": dateMs ? new Date(dateMs).toISOString() : undefined,
     "dateModified": updatedMs ? new Date(updatedMs).toISOString() : (dateMs ? new Date(dateMs).toISOString() : undefined),
     "author": {
@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       "name": "Transformateck",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://transformateck.com/hero.png",
+        "url": "https://www.transformateck.com/hero.png",
       },
     },
     "mainEntityOfPage": {
@@ -130,13 +130,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Inicio",
-        "item": "https://transformateck.com",
+        "item": "https://www.transformateck.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://transformateck.com/blog",
+        "item": "https://www.transformateck.com/blog",
       },
       {
         "@type": "ListItem",

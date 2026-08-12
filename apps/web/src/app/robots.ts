@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://transformateck.com/sitemap.xml',
+    sitemap: 'https://www.transformateck.com/sitemap.xml',
   };
 }
