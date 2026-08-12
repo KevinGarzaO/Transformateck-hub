@@ -86,10 +86,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const dateMs = getTimestampMs(post.date);
   const updatedMs = getTimestampMs(post.updatedAt);
 
+  // Artículos relacionados: prioriza la misma categoría
+  const allPosts = await getPublicPosts();
+  const relatedPosts = [
+    ...allPosts.filter((p) => p.id !== post.id && p.type === post.type),
+    ...allPosts.filter((p) => p.id !== post.id && p.type !== post.type),
+  ].slice(0, 3);
+
   // JSON-LD Schema Org para Google Search Console Rich Snippets
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": postUrl,
+    "url": postUrl,
     "headline": post.title,
     "description": post.excerpt,
     "image": [post.image || "https://transformateck.com/hero.png"],
@@ -155,6 +164,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[radial-gradient(circle_at_center,rgba(78,204,163,0.12)_0,transparent_70%)] blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto relative z-10">
+          {/* Breadcrumb visual */}
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40">
+              <li>
+                <Link href="/" className="hover:text-[#4ECCA3] transition-colors">Inicio</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/blog" className="hover:text-[#4ECCA3] transition-colors">Blog</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="text-[#4ECCA3] truncate max-w-[240px]" title={post.title}>{post.title}</li>
+            </ol>
+          </nav>
+
           {/* Navegación de regreso */}
           <Link
             href="/blog"
@@ -236,6 +260,49 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="prose prose-invert max-w-none mb-16">
             <MarkdownRenderer content={post.markdownContent} />
           </div>
+
+          {/* Artículos relacionados */}
+          {relatedPosts.length > 0 && (
+            <section className="mt-20">
+              <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-8">
+                Artículos Relacionados
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {relatedPosts.map((related) => (
+                  <Link
+                    key={related.id}
+                    href={`/blog/${related.slug}`}
+                    className="rounded-2xl border border-white/10 bg-[#0A0A0A] overflow-hidden flex flex-col justify-between hover:border-[#4ECCA3]/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg"
+                  >
+                    <div className="h-36 overflow-hidden bg-[#111] relative border-b border-white/5">
+                      {related.image ? (
+                        <Image
+                          src={related.image}
+                          alt={related.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          unoptimized
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-[#4ECCA3]/10 to-transparent flex items-center justify-center text-[#4ECCA3]/40">
+                          <Sparkles size={32} />
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-5">
+                      <span className="px-2.5 py-0.5 rounded-full border border-[#4ECCA3]/30 text-[#4ECCA3] text-[9px] font-black uppercase tracking-wider inline-block mb-3">
+                        {related.type || "Blog"}
+                      </span>
+                      <h3 className="text-sm font-bold uppercase tracking-tight text-white group-hover:text-[#4ECCA3] transition-colors leading-snug line-clamp-2">
+                        {related.title}
+                      </h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Banner de Comunidad al final del artículo */}
           <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#0F172A] to-[#0A0A0A] border border-[#4ECCA3]/30 relative overflow-hidden shadow-[0_0_40px_rgba(78,204,163,0.15)]">

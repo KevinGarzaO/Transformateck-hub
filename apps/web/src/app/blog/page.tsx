@@ -10,12 +10,31 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://transformateck.com/blog",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: "Blog & Noticias de IA | Transformateck",
     description: "Explora las últimas tendencias de Inteligencia Artificial en Latinoamérica.",
     url: "https://transformateck.com/blog",
     siteName: "Transformateck | Comunidad de IA",
     type: "website",
+    locale: "es_MX",
+    images: [
+      {
+        url: "https://transformateck.com/hero.png",
+        width: 1200,
+        height: 630,
+        alt: "Blog de IA — Transformateck",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog & Noticias de IA | Transformateck",
+    description: "Artículos, investigaciones y guías sobre Inteligencia Artificial en Latinoamérica.",
+    images: ["https://transformateck.com/hero.png"],
   },
 };
 
@@ -27,7 +46,34 @@ export default async function BlogIndexPage() {
   const regularPosts = posts.length > 1 ? posts.slice(1) : [];
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-6 relative overflow-hidden">
+    <>
+      {/* Schema Org: Colección de artículos */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "@id": "https://transformateck.com/blog",
+            url: "https://transformateck.com/blog",
+            name: "Blog & Noticias de IA | Transformateck",
+            description: "Artículos, investigaciones y guías sobre Inteligencia Artificial en Latinoamérica.",
+            isPartOf: {
+              "@id": "https://transformateck.com/#website",
+            },
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: posts.map((post, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `https://transformateck.com/blog/${post.slug}`,
+                name: post.title,
+              })),
+            },
+          }),
+        }}
+      />
+      <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-6 relative overflow-hidden">
       {/* Fondo con luces de neón */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(78,204,163,0.08)_0,transparent_70%)] blur-3xl" />
@@ -240,6 +286,7 @@ export default async function BlogIndexPage() {
           )}
         </section>
       </main>
-    </div>
+      </div>
+    </>
   );
 }
