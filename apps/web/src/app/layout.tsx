@@ -15,8 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://transformateck.com"),
   title: "Transformateck | Innovation Lab",
   description: "Transform your ideas into high-fidelity products.",
+  alternates: {
+    canonical: "https://transformateck.com",
+  },
   verification: {
     google: "googleab820c4f0cd7adc2",
   },
