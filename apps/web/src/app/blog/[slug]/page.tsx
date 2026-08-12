@@ -271,21 +271,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* CTA pequeño al inicio del contenido */}
           <div className="mb-10">
-            <SubscribeForm variant="small" />
+            <SubscribeForm variant="small" centered />
           </div>
 
           {/* Contenido Markdown con CTA pequeño en medio del texto */}
           <div className="prose prose-invert max-w-none mb-16">
             <MarkdownRenderer content={markdownFirstHalf} />
             <div className="my-12">
-              <SubscribeForm variant="small" />
+              <SubscribeForm variant="small" centered />
             </div>
             <MarkdownRenderer content={markdownSecondHalf} />
           </div>
 
           {/* CTA grande al final del contenido */}
           <div className="mb-16">
-            <SubscribeForm variant="large" />
+            <SubscribeForm variant="large" centered />
           </div>
 
           {/* Artículos relacionados */}

@@ -300,7 +300,7 @@ export default async function BlogIndexPage() {
                         <h3 className="text-lg font-black uppercase tracking-tight text-white mb-4 leading-snug">
                           Recibe noticias, guías y casos de estudio en tu correo
                         </h3>
-                        <SubscribeForm variant="medium" />
+                        <SubscribeForm variant="medium" centered />
                       </div>
                     )}
                   </React.Fragment>

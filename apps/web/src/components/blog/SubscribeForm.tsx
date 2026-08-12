@@ -6,6 +6,7 @@ const SUBSCRIBE_BASE = "https://transformateck.substack.com/subscribe";
 
 interface SubscribeFormProps {
   variant?: "small" | "medium" | "large";
+  centered?: boolean;
 }
 
 const sizes = {
@@ -26,7 +27,7 @@ const sizes = {
   },
 };
 
-export function SubscribeForm({ variant = "small" }: SubscribeFormProps) {
+export function SubscribeForm({ variant = "small", centered = false }: SubscribeFormProps) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const s = sizes[variant];
@@ -43,7 +44,11 @@ export function SubscribeForm({ variant = "small" }: SubscribeFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-2.5">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className={`flex flex-col gap-2.5 ${centered ? "items-center" : ""}`}
+    >
       <input
         type="email"
         inputMode="email"
@@ -63,7 +68,7 @@ export function SubscribeForm({ variant = "small" }: SubscribeFormProps) {
       >
         Suscribirme a la newsletter
       </button>
-      <p className={`${s.legend} text-white/40 leading-snug`}>
+      <p className={`${s.legend} text-white/40 leading-snug ${centered ? "text-center" : ""}`}>
         {error ||
           "Al dar clic en suscribirte aún no quedas suscrito: te redirigiremos a otra web donde terminarás y verificarás tu suscripción."}
       </p>
