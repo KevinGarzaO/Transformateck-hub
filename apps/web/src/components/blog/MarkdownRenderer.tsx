@@ -4,6 +4,16 @@ interface MarkdownRendererProps {
   content: string;
 }
 
+export function headingSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
   if (!content) return null;
 
@@ -45,7 +55,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
     // Encabezados
     if (trimmed.startsWith("### ")) {
       elements.push(
-        <h3 key={index} className="text-2xl font-bold text-white mt-10 mb-4 tracking-tight">
+        <h3 key={index} id={headingSlug(trimmed.replace("### ", ""))} className="text-2xl font-bold text-white mt-10 mb-4 tracking-tight scroll-mt-28">
           {renderInlineFormatting(trimmed.replace("### ", ""))}
         </h3>
       );
@@ -53,7 +63,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
     }
     if (trimmed.startsWith("## ")) {
       elements.push(
-        <h2 key={index} className="text-3xl font-extrabold text-white mt-12 mb-6 tracking-tight border-b border-white/10 pb-3">
+        <h2 key={index} id={headingSlug(trimmed.replace("## ", ""))} className="text-3xl font-extrabold text-white mt-12 mb-6 tracking-tight border-b border-white/10 pb-3 scroll-mt-28">
           {renderInlineFormatting(trimmed.replace("## ", ""))}
         </h2>
       );

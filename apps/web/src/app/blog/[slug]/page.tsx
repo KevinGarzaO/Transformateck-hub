@@ -3,8 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPublicPosts, formatDate, calculateReadingTime, getTimestampMs } from "@/lib/services/blog";
-import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
-import { ArrowLeft, Calendar, Clock, User, Sparkles } from "lucide-react";
+import { MarkdownRenderer, headingSlug } from "@/components/blog/MarkdownRenderer";
+import { ArrowLeft, Calendar, Clock, User, Sparkles, List, Share2, X, Linkedin, MessageCircle } from "lucide-react";
 import { SubscribeForm } from "@/components/blog/SubscribeForm";
 
 interface BlogPostPageProps {
@@ -105,6 +105,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
   const markdownFirstHalf = markdownLines.slice(0, contentMid).join("\n");
   const markdownSecondHalf = markdownLines.slice(contentMid).join("\n");
+
+  // Encabezados para la tabla de contenidos
+  const headings = markdownLines
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("## ") || line.startsWith("### "))
+    .map((line) => {
+      const isSub = line.startsWith("### ");
+      return {
+        level: isSub ? 3 : 2,
+        text: line.replace(/^#+\s+/, ""),
+        id: headingSlug(line.replace(/^#+\s+/, "")),
+      };
+    });
 
   // JSON-LD Schema Org para Google Search Console Rich Snippets
   const jsonLd = {
@@ -269,6 +282,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           )}
 
+          {/* Tabla de contenidos */}
+          {headings.length > 1 && (
+            <div className="mb-12 p-6 rounded-2xl border border-white/10 bg-[#0A0A0A]">
+              <h2 className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#4ECCA3] mb-4">
+                <List size={16} />
+                Tabla de Contenidos
+              </h2>
+              <nav aria-label="Tabla de contenidos">
+                <ul className="space-y-2.5">
+                  {headings.map((heading) => (
+                    <li key={heading.id} style={{ paddingLeft: heading.level === 3 ? 24 : 0 }}>
+                      <a
+                        href={`#${heading.id}`}
+                        className="text-sm font-semibold text-white/70 hover:text-[#4ECCA3] transition-colors leading-snug"
+                      >
+                        {heading.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          )}
+
           {/* CTA pequeño al inicio del contenido */}
           <div className="mb-10">
             <SubscribeForm variant="small" centered />
@@ -286,6 +323,72 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* CTA grande al final del contenido */}
           <div className="mb-16">
             <SubscribeForm variant="large" centered />
+          </div>
+
+          {/* Compartir en redes */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 py-8 border-y border-white/10 mb-16">
+            <span className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-white/50">
+              <Share2 size={16} className="text-[#4ECCA3]" />
+              Compartir
+            </span>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(postUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 text-xs font-black uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 hover:text-[#4ECCA3] transition-all"
+              >
+                <X size={14} />
+                X / Twitter
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 text-xs font-black uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 hover:text-[#4ECCA3] transition-all"
+              >
+                <Linkedin size={14} />
+                LinkedIn
+              </a>
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(`${post.title} ${postUrl}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 text-xs font-black uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 hover:text-[#4ECCA3] transition-all"
+              >
+                <MessageCircle size={14} />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+
+          {/* Caja de autor */}
+          <div className="mb-16 p-6 sm:p-8 rounded-3xl border border-white/10 bg-[#0A0A0A] flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            {post.authorImg ? (
+              <Image
+                src={post.authorImg}
+                alt={post.authorName || "Autor"}
+                width={72}
+                height={72}
+                className="rounded-full object-cover border-2 border-[#4ECCA3]/50 shrink-0"
+                unoptimized
+              />
+            ) : (
+              <div className="w-[72px] h-[72px] rounded-full bg-[#4ECCA3]/20 border border-[#4ECCA3] flex items-center justify-center text-[#4ECCA3] shrink-0">
+                <User size={28} />
+              </div>
+            )}
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#4ECCA3] block mb-1">
+                Escrito por
+              </span>
+              <h3 className="text-xl font-black uppercase tracking-tight text-white mb-2">
+                {post.authorName || "Equipo Transformateck"}
+              </h3>
+              <p className="text-sm text-white/60 leading-relaxed">
+                Miembro de la comunidad de IA de Transformateck, compartiendo conocimiento y experiencias para impulsar la inteligencia artificial en Latinoamérica.
+              </p>
+            </div>
           </div>
 
           {/* Artículos relacionados */}

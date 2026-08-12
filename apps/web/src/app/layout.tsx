@@ -25,8 +25,21 @@ export const metadata: Metadata = {
   description:
     "Comunidad de Inteligencia Artificial en Latinoamérica. Análisis de modelos LLM, agentes autónomos, visión por computadora, guías prácticas y casos de éxito para desarrolladores, investigadores y creadores.",
   applicationName: "Transformateck",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/manifest.webmanifest",
   alternates: {
     canonical: siteUrl,
+    types: {
+      "application/rss+xml": `${siteUrl}/feed.xml`,
+    },
   },
   robots: {
     index: true,

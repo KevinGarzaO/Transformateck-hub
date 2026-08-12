@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Sparkles, ArrowRight, Cpu, BookOpen, BrainCircuit, Bot, Eye, Rocket, Users, Activity } from 'lucide-react';
+import { Sparkles, ArrowRight, Cpu, BookOpen, BrainCircuit, Bot, Eye, Rocket, Users, Activity, Github, Newspaper } from 'lucide-react';
 import { SubscribeForm } from '@/components/blog/SubscribeForm';
 
 // --- ANIMATION VARIANTS ---
@@ -316,7 +316,7 @@ export default function TransformateckLanding() {
         <footer className="bg-[#050505] pt-32 pb-12 px-6 md:px-12 border-t border-[#4ECCA3]/20 relative z-10 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(78,204,163,0.1)_0,transparent_50%)]" />
           <div className="max-w-[1400px] mx-auto relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
               <div className="lg:col-span-2">
                 <div className="w-12 h-12 rounded-xl bg-[#4ECCA3] flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(78,204,163,0.4)]">
                   <Cpu size={24} className="text-[#050505]" />
@@ -341,6 +341,34 @@ export default function TransformateckLanding() {
                   <li><Link href="/blog" className="text-white/60 hover:text-white transition-colors">Investigación</Link></li>
                   <li><Link href="/blog" className="text-white/60 hover:text-white transition-colors">Casos de Estudio</Link></li>
                   <li><Link href="#contenido" className="text-white/60 hover:text-white transition-colors">Contenido</Link></li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-[#4ECCA3] font-black uppercase tracking-widest text-[10px] mb-6">Redes</h4>
+                <ul className="space-y-4 font-bold text-sm">
+                  <li>
+                    <a
+                      href="https://transformateck.substack.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+                    >
+                      <Newspaper size={14} className="text-[#4ECCA3]" />
+                      Substack
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/KevinGarzaO/Transformateck-hub"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+                    >
+                      <Github size={14} className="text-[#4ECCA3]" />
+                      GitHub
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
