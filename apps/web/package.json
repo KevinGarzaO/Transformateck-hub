@@ -12,6 +12,7 @@
     "@next/third-parties": "^16.2.4",
     "@tailwindcss/postcss": "^4.2.4",
     "clsx": "^2.1.1",
+    "firebase": "^12.17.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.400.0",
     "next": "16.2.4",
