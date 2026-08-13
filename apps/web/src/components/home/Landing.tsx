@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Sparkles, ArrowRight, Cpu, BookOpen, BrainCircuit, Bot, Eye, Rocket, Users, Activity, Github, Newspaper } from 'lucide-react';
 import { SubscribeForm } from '@/components/blog/SubscribeForm';
@@ -46,9 +47,13 @@ const Navbar = () => (
   >
     <div className="max-w-[1400px] mx-auto flex items-center justify-between">
       <Link href="/" className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded bg-[#4ECCA3] flex items-center justify-center shadow-[0_0_15px_rgba(78,204,163,0.5)]">
-          <Cpu size={16} className="text-[#050505]" />
-        </div>
+        <Image
+          src="/assets/logo_3.png"
+          alt="Transformateck"
+          width={32}
+          height={32}
+          className="rounded shadow-[0_0_15px_rgba(78,204,163,0.5)]"
+        />
         <span className="text-xl font-black tracking-tighter text-white">Transformateck</span>
       </Link>
 
