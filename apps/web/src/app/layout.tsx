@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
 import { Analytics } from "@/components/shared/Analytics";
+import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -127,6 +128,7 @@ export default function RootLayout({
         <Suspense>
           <Analytics />
         </Suspense>
+        <ScrollToTop />
       </body>
     </html>
   );

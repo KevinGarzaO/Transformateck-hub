@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Sparkles, ArrowRight, Cpu, BookOpen, BrainCircuit, Bot, Eye, Rocket, Users, Activity, Github, Newspaper } from 'lucide-react';
+import { Sparkles, ArrowRight, Cpu, BookOpen, BrainCircuit, Bot, Eye, Rocket, Users, Activity, Newspaper } from 'lucide-react';
 import { SubscribeForm } from '@/components/blog/SubscribeForm';
 
 // --- ANIMATION VARIANTS ---
@@ -363,17 +363,6 @@ export default function TransformateckLanding() {
                     >
                       <Newspaper size={14} className="text-[#4ECCA3]" />
                       Substack
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://github.com/KevinGarzaO/Transformateck-hub"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
-                    >
-                      <Github size={14} className="text-[#4ECCA3]" />
-                      GitHub
                     </a>
                   </li>
                 </ul>
