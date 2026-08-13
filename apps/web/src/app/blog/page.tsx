@@ -5,6 +5,7 @@ import Image from "next/image";
 import { getPublicPosts, formatDate, calculateReadingTime } from "@/lib/services/blog";
 import { Sparkles, Calendar, Clock, User, ArrowRight, BookOpen } from "lucide-react";
 import { SubscribeForm } from "@/components/blog/SubscribeForm";
+import { Navbar } from "@/components/shared/Navbar";
 
 export const metadata: Metadata = {
   title: "Blog & Noticias de IA | Transformateck",
@@ -78,6 +79,7 @@ export default async function BlogIndexPage() {
           }),
         }}
       />
+      <Navbar />
       <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-6 relative overflow-hidden">
       {/* Fondo con luces de neón */}
       <div className="fixed inset-0 pointer-events-none z-0">

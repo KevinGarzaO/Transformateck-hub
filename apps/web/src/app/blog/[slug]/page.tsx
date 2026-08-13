@@ -6,6 +6,7 @@ import { getPostBySlug, getPublicPosts, formatDate, calculateReadingTime, getTim
 import { MarkdownRenderer, headingSlug } from "@/components/blog/MarkdownRenderer";
 import { ArrowLeft, Calendar, Clock, User, Sparkles, List, Share2, X, Linkedin, MessageCircle } from "lucide-react";
 import { SubscribeForm } from "@/components/blog/SubscribeForm";
+import { Navbar } from "@/components/shared/Navbar";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -184,6 +185,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      <Navbar />
 
       <article className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-6 relative overflow-hidden">
         {/* Glow de fondo */}
