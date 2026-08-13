@@ -97,7 +97,7 @@ export default async function OpengraphImage({ params }: OpengraphImageProps) {
               color: "rgba(255,255,255,0.6)",
             }}
           >
-            www.transformateck.com
+            transformateck.com
           </div>
           <div
             style={{

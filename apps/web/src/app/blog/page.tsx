@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Blog & Noticias de IA | Transformateck",
   description: "Artículos, investigaciones y guías sobre Inteligencia Artificial, tecnología e innovación en Latinoamérica.",
   alternates: {
-    canonical: "https://www.transformateck.com/blog",
+    canonical: "https://transformateck.com/blog",
   },
   robots: {
     index: true,
@@ -19,13 +19,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Blog & Noticias de IA | Transformateck",
     description: "Explora las últimas tendencias de Inteligencia Artificial en Latinoamérica.",
-    url: "https://www.transformateck.com/blog",
+    url: "https://transformateck.com/blog",
     siteName: "Transformateck | Comunidad de IA",
     type: "website",
     locale: "es_MX",
     images: [
       {
-        url: "https://www.transformateck.com/hero.png",
+        url: "https://transformateck.com/hero.png",
         width: 1200,
         height: 630,
         alt: "Blog de IA — Transformateck",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Blog & Noticias de IA | Transformateck",
     description: "Artículos, investigaciones y guías sobre Inteligencia Artificial en Latinoamérica.",
-    images: ["https://www.transformateck.com/hero.png"],
+    images: ["https://transformateck.com/hero.png"],
   },
 };
 
@@ -59,19 +59,19 @@ export default async function BlogIndexPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "@id": "https://www.transformateck.com/blog",
-            url: "https://www.transformateck.com/blog",
+            "@id": "https://transformateck.com/blog",
+            url: "https://transformateck.com/blog",
             name: "Blog & Noticias de IA | Transformateck",
             description: "Artículos, investigaciones y guías sobre Inteligencia Artificial en Latinoamérica.",
             isPartOf: {
-              "@id": "https://www.transformateck.com/#website",
+              "@id": "https://transformateck.com/#website",
             },
             mainEntity: {
               "@type": "ItemList",
               itemListElement: posts.map((post, i) => ({
                 "@type": "ListItem",
                 position: i + 1,
-                url: `https://www.transformateck.com/blog/${post.slug}`,
+                url: `https://transformateck.com/blog/${post.slug}`,
                 name: post.title,
               })),
             },

@@ -4,12 +4,12 @@
   "redirects": [
     {
       "source": "/:path*",
-      "destination": "https://www.transformateck.com/:path*",
+      "destination": "https://transformateck.com/:path*",
       "permanent": true,
       "has": [
         {
           "type": "host",
-          "value": "transformateck.com"
+          "value": "www.transformateck.com"
         }
       ]
     }

@@ -14,7 +14,7 @@ function escapeXml(text: string): string {
 
 export async function GET() {
   const posts = await getPublicPosts();
-  const siteUrl = "https://www.transformateck.com";
+  const siteUrl = "https://transformateck.com";
   const lastBuild = posts.length
     ? new Date(getTimestampMs(posts[0].date) || Date.now()).toUTCString()
     : new Date().toUTCString();
