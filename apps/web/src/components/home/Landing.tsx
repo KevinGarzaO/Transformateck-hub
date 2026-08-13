@@ -70,7 +70,7 @@ const Navbar = () => (
           Blog IA
         </Link>
         <Link
-          href="#comunidad"
+          href="#suscribirme"
           className="px-6 py-3 bg-[#4ECCA3] text-[#050505] text-xs font-black uppercase tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(78,204,163,0.4)] transition-all duration-300"
         >
           Unirme
@@ -139,7 +139,7 @@ export default function TransformateckLanding() {
                 >
                   Explorar Blog de IA <ArrowRight size={18} />
                 </Link>
-                <Link href="#comunidad" className="px-10 py-5 border border-white/20 bg-white/5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:border-[#4ECCA3]/50 hover:bg-[#4ECCA3]/10 transition-all duration-300">
+                <Link href="#suscribirme" className="px-10 py-5 border border-white/20 bg-white/5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:border-[#4ECCA3]/50 hover:bg-[#4ECCA3]/10 transition-all duration-300">
                   Unirme a la Comunidad
                 </Link>
               </motion.div>
@@ -261,16 +261,6 @@ export default function TransformateckLanding() {
                     Conocer el Manifiesto
                   </Link>
                 </div>
-
-                <div className="mt-12 border border-[#4ECCA3]/30 bg-[#4ECCA3]/5 rounded-3xl p-8 max-w-xl">
-                  <h3 className="text-2xl font-black uppercase tracking-tight mb-1">
-                    Suscríbete a la newsletter
-                  </h3>
-                  <p className="text-white/60 text-sm font-medium mb-6">
-                    Recibe noticias, guías y casos de estudio semanales sobre IA en LATAM.
-                  </p>
-                  <SubscribeForm variant="large" />
-                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -291,6 +281,19 @@ export default function TransformateckLanding() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* SUSCRIPCIÓN */}
+        <section id="suscribirme" className="py-20 px-6 md:px-12 relative z-10">
+          <div className="max-w-2xl mx-auto border border-[#4ECCA3]/30 bg-[#4ECCA3]/5 rounded-3xl p-8">
+            <h3 className="text-2xl font-black uppercase tracking-tight mb-1">
+              Suscríbete a la newsletter
+            </h3>
+            <p className="text-white/60 text-sm font-medium mb-6">
+              Recibe noticias, guías y casos de estudio semanales sobre IA en LATAM.
+            </p>
+            <SubscribeForm variant="large" />
           </div>
         </section>
 
