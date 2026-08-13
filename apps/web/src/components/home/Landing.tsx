@@ -52,7 +52,6 @@ const Navbar = () => (
           alt="Transformateck"
           width={32}
           height={32}
-          className="rounded shadow-[0_0_15px_rgba(78,204,163,0.5)]"
         />
         <span className="text-xl font-black tracking-tighter text-white">Transformateck</span>
       </Link>
