@@ -11,7 +11,7 @@ export function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 p-6 px-8 md:px-16 z-50 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5"
     >
       <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-6">
@@ -30,7 +30,7 @@ export function Navbar() {
         <div className="hidden lg:flex items-center gap-10 bg-white/5 backdrop-blur-md px-8 py-3 rounded-full border border-[#4ECCA3]/20">
           <Link href="/#comunidad" className="text-xs font-bold text-white/70 hover:text-[#4ECCA3] transition-colors tracking-widest uppercase">Comunidad</Link>
           <Link href="/blog" className="text-xs font-bold text-white/70 hover:text-[#4ECCA3] transition-colors tracking-widest uppercase">Blog & IA</Link>
-          <Link href="/#manifiesto" className="text-xs font-bold text-white/70 hover:text-[#4ECCA3] transition-colors tracking-widest uppercase">Manifiesto</Link>
+          <Link href="/#suscribirme" className="text-xs font-bold text-white/70 hover:text-[#4ECCA3] transition-colors tracking-widest uppercase">Unirme</Link>
         </div>
       </div>
     </motion.nav>
