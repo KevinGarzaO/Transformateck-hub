@@ -44,12 +44,12 @@ export function SearchBar() {
   }, []);
 
   return (
-    <div ref={inputRef} className="relative flex-1 max-w-md">
-      <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md focus-within:border-[#4ECCA3]/50 focus-within:bg-[#4ECCA3]/10 transition-all duration-300">
-        <Search size={14} className="text-white/50" />
+    <div ref={inputRef} className="relative flex-1 max-w-md min-w-0">
+      <div className="flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md focus-within:border-[#4ECCA3]/50 focus-within:bg-[#4ECCA3]/10 transition-all duration-300">
+        <Search size={14} className="text-white/50 flex-shrink-0" />
         <input
           type="text"
-          placeholder="Buscar artículos..."
+          placeholder="Buscar..."
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
