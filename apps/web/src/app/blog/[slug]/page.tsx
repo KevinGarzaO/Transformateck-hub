@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getPostBySlug, getPublicPosts, formatDate, calculateReadingTime, getTimestampMs } from "@/lib/services/blog";
 import { MarkdownRenderer, headingSlug } from "@/components/blog/MarkdownRenderer";
 import { ArrowLeft, Calendar, Clock, User, Sparkles, List, Share2, X, Linkedin, MessageCircle } from "lucide-react";
+import { BlogAnalytics, ShareButton } from "@/components/blog/BlogAnalytics";
 import { SubscribeForm } from "@/components/blog/SubscribeForm";
 import { Navbar } from "@/components/shared/Navbar";
 
@@ -185,6 +186,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      <BlogAnalytics contentId={post.id} />
       <Navbar />
 
       <article className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-6 relative overflow-hidden">
@@ -334,33 +336,33 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               Compartir
             </span>
             <div className="flex flex-wrap gap-3">
-              <a
+              <ShareButton
+                contentId={post.id}
+                platform="twitter"
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(postUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 text-xs font-black uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 hover:text-[#4ECCA3] transition-all"
               >
                 <X size={14} />
                 X / Twitter
-              </a>
-              <a
+              </ShareButton>
+              <ShareButton
+                contentId={post.id}
+                platform="linkedin"
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 text-xs font-black uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 hover:text-[#4ECCA3] transition-all"
               >
                 <Linkedin size={14} />
                 LinkedIn
-              </a>
-              <a
+              </ShareButton>
+              <ShareButton
+                contentId={post.id}
+                platform="whatsapp"
                 href={`https://wa.me/?text=${encodeURIComponent(`${post.title} ${postUrl}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 text-xs font-black uppercase tracking-widest text-white hover:border-[#4ECCA3]/50 hover:text-[#4ECCA3] transition-all"
               >
                 <MessageCircle size={14} />
                 WhatsApp
-              </a>
+              </ShareButton>
             </div>
           </div>
 

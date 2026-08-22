@@ -1,5 +1,4 @@
-import { db } from "../firebase";
-import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
+import { supabase } from "../supabase";
 
 export interface BlogPost {
   id: string;
@@ -17,7 +16,7 @@ export interface BlogPost {
 }
 
 /**
- * Obtiene los milisegundos desde epoch a partir de un Timestamp de Firestore, Date o string
+ * Obtiene los milisegundos desde epoch a partir de un timestamp
  */
 export function getTimestampMs(dateField?: any): number | null {
   if (!dateField) return null;
@@ -32,7 +31,7 @@ export function getTimestampMs(dateField?: any): number | null {
 }
 
 /**
- * Convierte un Timestamp de Firestore o fecha en formato de texto legible
+ * Convierte un timestamp en formato de texto legible
  */
 export function formatDate(dateField?: any): string {
   const ms = getTimestampMs(dateField);
@@ -58,99 +57,73 @@ export function calculateReadingTime(content: string = ""): number {
 }
 
 /**
- * Obtiene todos los posts públicos de la colección 'entradas'
+ * Obtiene todos los posts públicos desde Supabase
  */
 export async function getPublicPosts(): Promise<BlogPost[]> {
   try {
-    const q = query(
-      collection(db, "entradas"),
-      where("publico", "==", true)
-    );
-    const snapshot = await getDocs(q);
-    const posts: BlogPost[] = [];
-    
-    snapshot.forEach((docSnap) => {
-      const data = docSnap.data();
-      posts.push({
-        id: docSnap.id,
-        title: data.title || "Sin título",
-        slug: data.slug || docSnap.id,
-        excerpt: data.excerpt || "",
-        markdownContent: data.markdownContent || "",
-        image: data.image || "",
-        publico: data.publico ?? true,
-        type: data.type || "Blog",
-        authorName: data.authorName || "Equipo Transformateck",
-        authorImg: data.authorImg || "",
-        date: data.date,
-        updatedAt: data.updatedAt,
-      });
-    });
+    const { data: posts, error } = await supabase
+      .from("content")
+      .select("*")
+      .eq("content_type", "blog_post")
+      .eq("status", "published")
+      .order("published_at", { ascending: false });
 
-    // Ordenar por fecha descendente
-    return posts.sort((a, b) => {
-      const msA = getTimestampMs(a.date) || 0;
-      const msB = getTimestampMs(b.date) || 0;
-      return msB - msA;
-    });
+    if (error) {
+      console.error("Error al obtener posts de Supabase:", error.message);
+      return [];
+    }
+
+    return (posts || []).map((post: any) => ({
+      id: post.id,
+      title: post.title || "Sin título",
+      slug: post.slug || post.id,
+      excerpt: post.excerpt || "",
+      markdownContent: post.markdown_content || "",
+      image: post.image_url || "",
+      publico: true,
+      type: "Blog",
+      authorName: "Kevin Garza",
+      authorImg: "https://firebasestorage.googleapis.com/v0/b/babelink-ia.firebasestorage.app/o/all%2FKevinGarza.png?alt=media&token=6f54",
+      date: post.published_at || post.created_at,
+      updatedAt: post.updated_at,
+    }));
   } catch (error) {
-    console.error("Error al obtener posts públicos de Firebase:", error);
+    console.error("Error al obtener posts de Supabase:", error);
     return [];
   }
 }
 
 /**
- * Obtiene un post específico por su slug
+ * Obtiene un post específico por su slug desde Supabase
  */
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
-    const q = query(
-      collection(db, "entradas"),
-      where("slug", "==", slug)
-    );
-    const snapshot = await getDocs(q);
-    
-    if (!snapshot.empty) {
-      const docSnap = snapshot.docs[0];
-      const data = docSnap.data();
-      return {
-        id: docSnap.id,
-        title: data.title || "Sin título",
-        slug: data.slug || docSnap.id,
-        excerpt: data.excerpt || "",
-        markdownContent: data.markdownContent || "",
-        image: data.image || "",
-        publico: data.publico ?? true,
-        type: data.type || "Blog",
-        authorName: data.authorName || "Equipo Transformateck",
-        authorImg: data.authorImg || "",
-        date: data.date,
-        updatedAt: data.updatedAt,
-      };
+    const { data: post, error } = await supabase
+      .from("content")
+      .select("*")
+      .eq("slug", slug)
+      .eq("content_type", "blog_post")
+      .single();
+
+    if (error || !post) {
+      console.error(`Error al obtener post con slug '${slug}':`, error?.message);
+      return null;
     }
 
-    // Fallback: si el id coincide con el slug
-    const directDocRef = doc(db, "entradas", slug);
-    const directSnap = await getDoc(directDocRef);
-    if (directSnap.exists()) {
-      const data = directSnap.data();
-      return {
-        id: directSnap.id,
-        title: data.title || "Sin título",
-        slug: data.slug || directSnap.id,
-        excerpt: data.excerpt || "",
-        markdownContent: data.markdownContent || "",
-        image: data.image || "",
-        publico: data.publico ?? true,
-        type: data.type || "Blog",
-        authorName: data.authorName || "Equipo Transformateck",
-        authorImg: data.authorImg || "",
-        date: data.date,
-        updatedAt: data.updatedAt,
-      };
-    }
-
-    return null;
+    return {
+      id: post.id,
+      title: post.title || "Sin título",
+      slug: post.slug || post.id,
+      excerpt: post.excerpt || "",
+      markdownContent: post.markdown_content || "",
+      image: post.image_url || "",
+      publico: true,
+      type: "Blog",
+      authorName: "Kevin Garza",
+      authorImg: "https://firebasestorage.googleapis.com/v0/b/babelink-ia.firebasestorage.app/o/all%2FKevinGarza.png?alt=media&token=6f54",
+      date: post.published_at || post.created_at,
+      updatedAt: post.updated_at,
+    };
   } catch (error) {
     console.error(`Error al obtener post con slug '${slug}':`, error);
     return null;
