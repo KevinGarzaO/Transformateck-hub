@@ -83,7 +83,7 @@ export async function getPublicPosts(): Promise<BlogPost[]> {
       publico: true,
       type: "Blog",
       authorName: "Kevin Garza",
-      authorImg: "https://firebasestorage.googleapis.com/v0/b/babelink-ia.firebasestorage.app/o/all%2FKevinGarza.png?alt=media&token=6f54",
+      authorImg: "https://qqqkjneuzalfcerjzzae.supabase.co/storage/v1/object/public/images/kevin-garza.png",
       date: post.published_at || post.created_at,
       updatedAt: post.updated_at,
     }));
@@ -120,7 +120,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       publico: true,
       type: "Blog",
       authorName: "Kevin Garza",
-      authorImg: "https://firebasestorage.googleapis.com/v0/b/babelink-ia.firebasestorage.app/o/all%2FKevinGarza.png?alt=media&token=6f54",
+      authorImg: "https://qqqkjneuzalfcerjzzae.supabase.co/storage/v1/object/public/images/kevin-garza.png",
       date: post.published_at || post.created_at,
       updatedAt: post.updated_at,
     };
